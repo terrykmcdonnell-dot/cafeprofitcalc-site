@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Inventory Management: Stock Control That Actually Works | CaféProfitCalc</title>
+<meta name="description" content="Most cafés lose margin to inventory nobody's watching — spoiled milk, over-ordered pastries, and stockrooms nobody counts. Here's a stock control system that fits inside a busy week.">
+<meta name="keywords" content="cafe inventory management, cafe stock control, coffee shop inventory, reduce cafe waste, cafe stocktake, cafe ordering system">
+<meta property="og:title" content="Café Inventory Management: Stock Control That Actually Works">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://www.cafeprofitcalc.com/blog/cafe-inventory-management">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5659107512429407" crossorigin="anonymous"></script>
+<style>:root{--bg:#faf8f5;--surface:#ffffff;--surface2:#f3f0eb;--border:rgba(0,0,0,0.08);--border-med:rgba(0,0,0,0.14);--text:#1c1a17;--muted:#2a2825;--hint:#6b6660;--accent:#2a6b4c;--accent-light:#edf5f0;--radius:8px;--radius-lg:14px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',sans-serif;font-weight:500;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:'Source Serif 4',serif;font-size:18px;color:var(--text);letter-spacing:-.2px;text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.article-wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;padding:56px 0 80px;align-items:start}
+@media(max-width:760px){.article-wrap{grid-template-columns:1fr}.sidebar{display:none}.nav-links{display:none}}
+article{min-width:0}
+.article-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:4px 12px;border-radius:20px;margin-bottom:16px}
+article h1{font-family:'Source Serif 4',serif;font-size:clamp(26px,4vw,40px);font-weight:400;line-height:1.15;letter-spacing:-.5px;margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--hint);margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+article h2{font-family:'Source Serif 4',serif;font-size:24px;font-weight:400;letter-spacing:-.3px;margin:40px 0 12px;line-height:1.2}
+article h3{font-family:'Source Serif 4',serif;font-size:19px;font-weight:400;margin:28px 0 8px}
+article p{color:#2a2825;line-height:1.85;margin-bottom:16px}
+article ul,article ol{padding-left:22px;margin-bottom:16px}
+article li{color:#2a2825;line-height:1.85;margin-bottom:6px}
+article strong{color:var(--text);font-weight:500}
+article hr{border:none;border-top:1px solid var(--border);margin:36px 0}
+.highlight-box{background:var(--surface2);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:24px 0}
+.highlight-box p{margin:0;font-size:16px;color:var(--text)}
+.benchmark-table{width:100%;border-collapse:collapse;font-size:14px;margin:20px 0 28px}
+.benchmark-table th{font-size:12px;font-weight:500;text-align:left;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);color:var(--text)}
+.benchmark-table td{padding:10px 14px;border:1px solid var(--border);color:var(--muted)}
+.benchmark-table td:first-child{color:var(--text);font-weight:500}
+.good{color:#1a5e38}.ok{color:#92520a}.bad{color:#b91c1c}
+.cta-box{background:var(--text);border-radius:var(--radius-lg);padding:28px 24px;margin:40px 0;text-align:center}
+.cta-box h3{font-family:'Source Serif 4',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:8px}
+.cta-box p{color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:20px}
+.cta-link{display:inline-block;font-family:'Source Serif 4',sans-serif;font-size:14px;font-weight:500;padding:11px 28px;background:var(--accent);color:#fff;border-radius:var(--radius);text-decoration:none;transition:opacity .15s}
+.cta-link:hover{opacity:.88;text-decoration:none}
+.article-footer{font-size:12px;color:var(--hint);padding-top:24px;border-top:1px solid var(--border);line-height:1.7;font-style:italic}
+.sidebar{position:sticky;top:24px}
+.sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px}
+.sidebar-card h4{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;margin-bottom:12px}
+.sidebar-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.sidebar-card a.btn{display:block;text-align:center;font-size:13px;font-weight:500;padding:9px 16px;background:var(--accent);color:#fff;border-radius:var(--radius);text-decoration:none}
+.sidebar-card a.btn:hover{opacity:.88}
+.quick-facts{list-style:none;padding:0}
+.quick-facts li{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.quick-facts li:last-child{border-bottom:none}
+.quick-facts .val{font-weight:500;color:var(--text)}
+.adspot{background:var(--surface2);border:1px dashed var(--border-med);border-radius:var(--radius);padding:20px;text-align:center;font-size:12px;color:var(--hint);margin:24px 0;min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:var(--surface)}
+footer p{font-size:12px;color:var(--hint);line-height:1.8;max-width:560px;margin:0 auto}
+.related-section{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.related-section h3{font-family:'Source Serif 4',serif;font-size:18px;font-weight:400;margin-bottom:16px;color:var(--text)}
+.related-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.related-card{background:var(--surface2);border-radius:var(--radius);padding:14px;display:block;text-decoration:none;transition:background .15s}
+.related-card:hover{background:#e8e3dc;text-decoration:none}
+.related-card .rc-tag{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+.related-card .rc-title{font-size:14px;color:var(--text);line-height:1.3;display:block}</style>
+</head>
+<body>
+<nav><div class="nav-inner"><a class="logo" href="/">café<span>profit</span>calc</a><div class="nav-links"><a href="/">Calculator</a><a href="/blog">Blog</a></div></div></nav>
+<div class="container">
+<div class="article-wrap">
+<article>
+<div class="article-tag">Inventory</div>
+<h1>Café Inventory Management: Stock Control That Actually Works</h1>
+<div class="article-meta">Published September 2026 &nbsp;·&nbsp; 7 min read &nbsp;·&nbsp; CaféProfitCalc.com</div>
+
+<p>Ask most café owners what's in their stockroom and you'll get a shrug. Inventory is the part of the business that runs on instinct — order more when it looks low, throw it out when it goes off, and hope the food cost percentage at month-end isn't too ugly. The problem is that "instinct" is exactly where margin quietly leaks out.</p>
+<p>You don't need restaurant-grade software to fix this. You need a system that takes fifteen minutes a week and tells you the truth about where your stock is actually going.</p>
+<hr>
+<h2>Where café inventory actually goes missing</h2>
+<p>Before you can control stock, it helps to know where it disappears to. In most cafés it's one of four places:</p>
+<ul>
+<li><strong>Over-ordering.</strong> Buying "just in case" because running out feels worse than running over. This is the single biggest cause of café food waste.</li>
+<li><strong>Spoilage.</strong> Milk, cream, and fresh cabinet items have short shelf lives and get thrown out if production doesn't match demand.</li>
+<li><strong>Over-portioning.</strong> A barista pouring a heavier shot or a generous milk pour doesn't feel like theft, but multiplied across hundreds of drinks a week it's a real cost.</li>
+<li><strong>Unrecorded shrinkage.</strong> Breakage, staff drinks that aren't logged, and small unaccounted losses that never show up as a single event but add up over a month.</li>
+</ul>
+<div class="adspot"><!-- AdSense --></div>
+<h2>A weekly stocktake that doesn't eat your week</h2>
+<p>You don't need to count every teaspoon. Focus on the items that actually move your food cost percentage: coffee beans, milk, and your three or four highest-cost cabinet ingredients. Count these once a week, same day, same time — most cafés find Monday morning before the week's first delivery works well.</p>
+<div class="highlight-box"><p><strong>The formula:</strong> Opening stock + purchases − closing stock = usage. Compare usage in dollars against your sales for the week. If usage is consistently running higher than what your sales should account for, that gap is where your margin is leaking.</p></div>
+<p>Keep it on a single spreadsheet. Six or seven line items, updated weekly, is more useful than an elaborate system nobody keeps up with.</p>
+<hr>
+<h2>Par levels stop the guesswork</h2>
+<p>A par level is simply the amount of stock you should have on hand before your next delivery. Once you know your average weekly usage for an item, set a par level slightly above it and order to that number rather than "topping up" based on a glance at the shelf. This alone tends to cut over-ordering significantly, because ordering becomes a calculation instead of a feeling.</p>
+<h3>How to set a par level</h3>
+<p>Take your last four weeks of usage for an item, average it, and add a small buffer — 10-15% is usually enough for a stable-demand item like coffee beans, more for something with unpredictable weekend spikes. Review par levels every couple of months, especially after a menu change or a shift in trading pattern.</p>
+<hr>
+<h2>Cabinet items need a different approach</h2>
+<p>Fresh cabinet food can't be parred the same way as shelf-stable stock — it has to be produced to match forecast demand, not stockpiled. Track your <a href="/blog/cafe-kpis">sell-through rate</a> (what percentage of what you baked or bought actually sold) and use it to adjust production, not the other way around. If Tuesdays consistently sell through at 60% and Fridays at 95%, produce accordingly instead of baking the same quantity every day.</p>
+<hr>
+<h2>What good inventory control is worth</h2>
+<p>A café running loose inventory control often sits 4-6 percentage points above benchmark on food and beverage cost — that's not a rounding error, it's the difference between a healthy margin and a break-even month. Tightening stocktakes, par levels, and cabinet production to match sell-through is usually the fastest, cheapest lever available to bring food cost back into range, faster than any pricing change.</p>
+
+<div class="cta-box"><h3>See what tighter inventory would do to your margin</h3><p>Enter your current food cost percentage into the calculator and see the effect of bringing it down by even 2-3 points.</p><a class="cta-link" href="/">Use the free calculator</a></div>
+<div class="related-section"><h3>Related reading</h3><div class="related-cards"><a class="related-card" href="/blog/how-to-reduce-cafe-food-cost"><span class="rc-tag">Food Cost</span><span class="rc-title">How to Reduce Café Food Cost</span></a>
+<a class="related-card" href="/blog/cafe-kpis"><span class="rc-tag">Management</span><span class="rc-title">Café KPIs to Track Weekly</span></a>
+<a class="related-card" href="/blog/coffee-cost-percentage"><span class="rc-tag">Coffee Cost</span><span class="rc-title">Coffee Cost Percentage</span></a></div></div>
+<div class="article-footer">CaféProfitCalc.com is a free tool for café and coffee shop operators. Results are indicative only and do not constitute financial advice.</div>
+</article>
+<aside class="sidebar">
+<div class="sidebar-card"><h4>Calculate your numbers</h4><p>Enter your weekly revenue and costs to instantly see your true net profit margin.</p><a href="/" class="btn">Free calculator</a></div>
+<div class="sidebar-card"><h4>Quick reference</h4><ul class="quick-facts"><li><span>Stocktake frequency</span><span class="val">Weekly</span></li>
+<li><span>Par buffer (stable item)</span><span class="val">10–15%</span></li>
+<li><span>Cabinet sell-through target</span><span class="val">90%+</span></li>
+<li><span>Food/bev cost target</span><span class="val">28–35%</span></li></ul></div>
+<div class="adspot" style="margin:0"><!-- AdSense --></div>
+</aside>
+</div>
+</div>
+<footer><p>CaféProfitCalc — free profitability tools for café and coffee shop operators.<br><a href="/">Calculator</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy policy</a></p></footer>
+</body>
+</html>
