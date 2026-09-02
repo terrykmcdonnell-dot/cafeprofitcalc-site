@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Break-Even Analysis: How to Calculate Your Break-Even Point | CaféProfitCalc</title>
+<meta name="description" content="Your break-even point is the weekly revenue you need to cover all costs and make zero profit. Every café operator should know this number. Here is how to calculate it.">
+<meta name="keywords" content="cafe break even analysis, cafe break even point, how to calculate cafe break even, coffee shop break even, cafe fixed costs, cafe financial planning">
+<meta property="og:title" content="Café Break-Even Analysis: How to Calculate Your Break-Even Point">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://www.cafeprofitcalc.com/blog/cafe-break-even-analysis">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5659107512429407" crossorigin="anonymous"></script>
+<style>:root{--bg:#faf8f5;--surface:#ffffff;--surface2:#f3f0eb;--border:rgba(0,0,0,0.08);--border-med:rgba(0,0,0,0.14);--text:#1c1a17;--muted:#2a2825;--hint:#6b6660;--accent:#2a6b4c;--accent-light:#edf5f0;--radius:8px;--radius-lg:14px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',sans-serif;font-weight:500;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:'Source Serif 4',serif;font-size:18px;color:var(--text);letter-spacing:-.2px;text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.article-wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;padding:56px 0 80px;align-items:start}
+@media(max-width:760px){.article-wrap{grid-template-columns:1fr}.sidebar{display:none}.nav-links{display:none}}
+article{min-width:0}
+.article-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:4px 12px;border-radius:20px;margin-bottom:16px}
+article h1{font-family:'Source Serif 4',serif;font-size:clamp(26px,4vw,40px);font-weight:400;line-height:1.15;letter-spacing:-.5px;margin-bottom:16px}
+.article-meta{font-size:13px;color:var(--hint);margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+article h2{font-family:'Source Serif 4',serif;font-size:24px;font-weight:400;letter-spacing:-.3px;margin:40px 0 12px;line-height:1.2}
+article h3{font-family:'Source Serif 4',serif;font-size:19px;font-weight:400;margin:28px 0 8px}
+article p{color:#2a2825;line-height:1.85;margin-bottom:16px}
+article ul,article ol{padding-left:22px;margin-bottom:16px}
+article li{color:#2a2825;line-height:1.85;margin-bottom:6px}
+article strong{color:var(--text);font-weight:500}
+article hr{border:none;border-top:1px solid var(--border);margin:36px 0}
+.highlight-box{background:var(--surface2);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:24px 0}
+.highlight-box p{margin:0;font-size:16px;color:var(--text)}
+.benchmark-table{width:100%;border-collapse:collapse;font-size:14px;margin:20px 0 28px}
+.benchmark-table th{font-size:12px;font-weight:500;text-align:left;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);color:var(--text)}
+.benchmark-table td{padding:10px 14px;border:1px solid var(--border);color:var(--muted)}
+.benchmark-table td:first-child{color:var(--text);font-weight:500}
+.good{color:#1a5e38}.ok{color:#92520a}.bad{color:#b91c1c}
+.cta-box{background:var(--text);border-radius:var(--radius-lg);padding:28px 24px;margin:40px 0;text-align:center}
+.cta-box h3{font-family:'Source Serif 4',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:8px}
+.cta-box p{color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:20px}
+.cta-link{display:inline-block;font-family:'Source Serif 4',sans-serif;font-size:14px;font-weight:500;padding:11px 28px;background:var(--accent);color:#fff;border-radius:var(--radius);text-decoration:none;transition:opacity .15s}
+.cta-link:hover{opacity:.88;text-decoration:none}
+.article-footer{font-size:12px;color:var(--hint);padding-top:24px;border-top:1px solid var(--border);line-height:1.7;font-style:italic}
+.sidebar{position:sticky;top:24px}
+.sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px}
+.sidebar-card h4{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;margin-bottom:12px}
+.sidebar-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.sidebar-card a.btn{display:block;text-align:center;font-size:13px;font-weight:500;padding:9px 16px;background:var(--accent);color:#fff;border-radius:var(--radius);text-decoration:none}
+.sidebar-card a.btn:hover{opacity:.88}
+.quick-facts{list-style:none;padding:0}
+.quick-facts li{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.quick-facts li:last-child{border-bottom:none}
+.quick-facts .val{font-weight:500;color:var(--text)}
+.adspot{background:var(--surface2);border:1px dashed var(--border-med);border-radius:var(--radius);padding:20px;text-align:center;font-size:12px;color:var(--hint);margin:24px 0;min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:var(--surface)}
+footer p{font-size:12px;color:var(--hint);line-height:1.8;max-width:560px;margin:0 auto}
+.related-section{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.related-section h3{font-family:'Source Serif 4',serif;font-size:18px;font-weight:400;margin-bottom:16px;color:var(--text)}
+.related-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.related-card{background:var(--surface2);border-radius:var(--radius);padding:14px;display:block;text-decoration:none;transition:background .15s}
+.related-card:hover{background:#e8e3dc;text-decoration:none}
+.related-card .rc-tag{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+.related-card .rc-title{font-size:14px;color:var(--text);line-height:1.3;display:block}</style>
+</head>
+<body>
+<nav><div class="nav-inner"><a class="logo" href="/">café<span>profit</span>calc</a><div class="nav-links"><a href="/">Calculator</a><a href="/blog">Blog</a></div></div></nav>
+<div class="container">
+<div class="article-wrap">
+<article>
+<div class="article-tag">Financial Planning</div>
+<h1>Café Break-Even Analysis: How to Calculate Your Break-Even Point</h1>
+<div class="article-meta">Published April 2026 &nbsp;·&nbsp; 6 min read &nbsp;·&nbsp; CaféProfitCalc.com</div>
+
+<p>Every café has a break-even point — the exact weekly revenue needed to cover all costs and generate precisely zero profit. Below that number you're losing money, above it you're making money. Knowing your break-even point is fundamental to understanding whether your café is viable, particularly when evaluating a new location, modelling a quiet season, or deciding whether a rent increase is survivable.</p>
+<hr>
+<h2>Fixed costs vs variable costs</h2>
+<p><strong>Fixed costs</strong> don't change with revenue: rent, loan repayments, insurance, management salaries, software subscriptions. You pay these whether you serve 50 customers or 300.</p>
+<p><strong>Variable costs</strong> scale with revenue: coffee and food cost, hourly wages, packaging. The more you sell, the more these cost.</p>
+<div class="highlight-box"><p><strong>Break-even formula:</strong><br>Break-even revenue = Fixed costs ÷ (1 − variable cost %)<br><br>Example: $3,500 weekly fixed costs ÷ (1 − 0.65) = $10,000 weekly break-even revenue</p></div>
+<hr>
+<h2>Step by step</h2>
+<h3>Step 1: Calculate your weekly fixed costs</h3>
+<p>List every cost that doesn't change with revenue: rent, insurance, management salaries, loan repayments, software. Divide monthly costs by 4.33 to get weekly. A café with $3,500/month rent, $800 insurance, $1,200 management salary, and $500 in other fixed costs has roughly $1,385 in weekly fixed costs.</p>
+<h3>Step 2: Calculate your variable cost percentage</h3>
+<p>Add your food and beverage cost percentage to your variable labour percentage (hourly staff only, not salaried management). If food/bev cost is 30% and variable labour is 32%, your variable cost percentage is 62%.</p>
+<h3>Step 3: Apply the formula</h3>
+<p>$1,385 weekly fixed costs ÷ (1 − 0.62) = $3,645 weekly break-even revenue. This means you need $3,645 per week just to cover all costs. A busy morning for most cafés — but if your quiet weeks fall below this, you're losing money.</p>
+<div class="adspot"><!-- AdSense --></div>
+<h2>Using break-even before signing a lease</h2>
+<p>This is where break-even analysis is most valuable. Before committing to a location, calculate your break-even point based on the projected rent and realistic operating costs. Then ask: how many coffees per day at my target average transaction value does it take to hit that break-even? Is that number achievable in that location?</p>
+<p>A café paying $5,000/month rent with a break-even of $18,000/week needs to serve roughly 350–400 customers per day at $6–7 average spend to break even — every week, including the quiet ones. If the location can't support that volume, the rent is too high regardless of how beautiful the fit-out is.</p>
+<hr>
+<h2>Break-even for quiet season planning</h2>
+<p>Once you know your break-even point, you can model your quiet months realistically. If your break-even is $9,000/week and your quietest month averages $7,500/week, you know you'll lose approximately $1,500/week for those 4–5 weeks — about $6,000–7,500 in total. That's cash you need to have in reserve before the quiet season arrives, not after it ends.</p>
+
+<div class="cta-box"><h3>See your profit margin at your current revenue</h3><p>Enter your costs into our free calculator to see exactly where you stand — and how far above break-even you are.</p><a class="cta-link" href="/">Use the free calculator</a></div>
+<div class="related-section"><h3>Related reading</h3><div class="related-cards"><a class="related-card" href="/blog/cafe-startup-costs"><span class="rc-tag">Starting Out</span><span class="rc-title">Café Startup Costs</span></a>
+<a class="related-card" href="/blog/what-is-a-good-cafe-profit-margin"><span class="rc-tag">Profitability</span><span class="rc-title">What is a Good Café Profit Margin?</span></a>
+<a class="related-card" href="/blog/why-cafes-fail"><span class="rc-tag">Business Health</span><span class="rc-title">Why Cafés Fail</span></a></div></div>
+<div class="article-footer">CaféProfitCalc.com is a free tool for café and coffee shop operators. Results are indicative only and do not constitute financial advice.</div>
+</article>
+<aside class="sidebar">
+<div class="sidebar-card"><h4>Calculate your numbers</h4><p>Enter your weekly revenue and costs to instantly see your true net profit margin.</p><a href="/" class="btn">Free calculator</a></div>
+<div class="sidebar-card"><h4>Quick reference</h4><ul class="quick-facts"><li><span>Formula</span><span class="val">Fixed costs ÷ (1 - variable %)</span></li>
+<li><span>Know your</span><span class="val">Fixed vs variable costs</span></li>
+<li><span>Review when</span><span class="val">Costs change significantly</span></li>
+<li><span>Use for</span><span class="val">Lease decisions</span></li></ul></div>
+<div class="adspot" style="margin:0"><!-- AdSense --></div>
+</aside>
+</div>
+</div>
+<footer><p>CaféProfitCalc — free profitability tools for café and coffee shop operators.<br><a href="/">Calculator</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> · <a href="/privacy">Privacy policy</a></p></footer>
+</body>
+</html>

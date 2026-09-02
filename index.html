@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Profitability Calculator — Know Your Numbers</title>
+<meta name="description" content="Free café profitability calculator. Enter your revenue, food cost, labour, rent and overheads to instantly see your net profit margin and where your money is going. Used by café owners worldwide.">
+<meta name="keywords" content="cafe profitability calculator, cafe profit margin calculator, cafe food cost calculator, cafe P&L calculator, cafe net profit, cafe financial calculator, coffee shop profit calculator">
+<meta property="og:title" content="Café Profitability Calculator — Know Your Numbers">
+<meta property="og:description" content="See your true café profit margin in seconds. Simple or detailed mode. Built for café operators.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://www.cafeprofitcalc.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5659107512429407" crossorigin="anonymous"></script>
+<style>
+:root {
+--bg: #faf8f5;
+--surface: #ffffff;
+--surface2: #f3f0eb;
+--surface3: #ece8e1;
+--border: rgba(0,0,0,0.08);
+--border-med: rgba(0,0,0,0.14);
+--text: #1c1a17;
+--muted: #2a2825;
+--hint: #6b6660;
+--rust: #2a6b4c;
+--rust-light: #edf5f0;
+--rust-dim: rgba(42,107,76,0.1);
+--green: #1a5e38;
+--green-light: #eaf5ef;
+--amber: #92520a;
+--amber-light: #fef4e6;
+--red: #b91c1c;
+--red-light: #fef2f2;
+--radius: 8px;
+--radius-lg: 14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',sans-serif;font-weight:500;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--rust);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:'Source Serif 4',serif;font-size:18px;color:var(--text);letter-spacing:-.2px}
+.logo span{color:var(--rust)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.hero{background:var(--surface);border-bottom:1px solid var(--border);padding:56px 24px 48px;text-align:center}
+.hero-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);background:var(--rust-light);padding:4px 14px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-family:'Source Serif 4',serif;font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.1;letter-spacing:-.5px;margin-bottom:14px;max-width:640px;margin-left:auto;margin-right:auto}
+.hero p{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto;line-height:1.65}
+.mode-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.mode-inner{max-width:1000px;margin:0 auto;display:flex;gap:0}
+.mode-btn{font-family:'Source Serif 4',sans-serif;font-size:14px;font-weight:400;padding:14px 28px;border:none;background:transparent;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;margin-bottom:-1px}
+.mode-btn.active{color:var(--rust);border-bottom-color:var(--rust);font-weight:500}
+.mode-btn:hover{color:var(--text)}
+.calc-section{padding:36px 0 48px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:700px){.calc-grid{grid-template-columns:1fr}.nav-links{display:none}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-title{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;margin-bottom:18px;color:var(--text)}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px}
+.input-wrap{display:flex;align-items:center;border:1px solid var(--border-med);border-radius:var(--radius);background:var(--bg);overflow:hidden;transition:border-color .15s}
+.input-wrap:focus-within{border-color:var(--rust)}
+.input-pre,.input-suf{padding:0 10px;font-size:14px;color:var(--hint);background:var(--surface2);height:38px;display:flex;align-items:center;white-space:nowrap}
+.input-pre{border-right:1px solid var(--border)}
+.input-suf{border-left:1px solid var(--border)}
+.input-wrap input{flex:1;font-family:'Source Serif 4',sans-serif;font-size:16px;padding:8px 12px;border:none;background:transparent;color:var(--text);outline:none;min-width:0}
+.field .hint{font-size:11px;color:var(--hint);margin-top:3px}
+.result-hero{background:var(--text);border-radius:var(--radius-lg);padding:28px 24px;margin-bottom:14px;color:#fff;text-align:center}
+.rh-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px}
+.rh-val{font-family:'Source Serif 4',serif;font-size:52px;font-weight:400;line-height:1;letter-spacing:-1px;margin-bottom:6px}
+.rh-val.good{color:#6ee7a0}
+.rh-val.ok{color:#fcd34d}
+.rh-val.bad{color:#fca5a5}
+.rh-sub{font-size:13px;color:rgba(255,255,255,0.55)}
+.verdict-bar{border-radius:var(--radius);padding:12px 16px;margin-bottom:14px;font-size:13px;line-height:1.6}
+.verdict-bar.good{background:var(--green-light);color:var(--green)}
+.verdict-bar.ok{background:var(--amber-light);color:var(--amber)}
+.verdict-bar.bad{background:var(--red-light);color:var(--red)}
+.verdict-bar.empty{background:var(--surface2);color:var(--hint)}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.metric{background:var(--surface2);border-radius:var(--radius);padding:12px 14px}
+.metric .ml{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--hint);margin-bottom:3px}
+.metric .mv{font-size:18px;font-weight:500;color:var(--text)}
+.pl-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:4px}
+.pl-table th{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--hint);padding:0 0 8px;border-bottom:1px solid var(--border-med);text-align:left}
+.pl-table th:last-child{text-align:right}
+.pl-table td{padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted)}
+.pl-table td:last-child{text-align:right;color:var(--text);font-feature-settings:"tnum"}
+.pl-table tr.subtotal td{font-weight:500;color:var(--text);border-top:1px solid var(--border-med);border-bottom:1px solid var(--border-med)}
+.pl-table tr.total td{font-weight:500;font-size:14px;border-bottom:none;border-top:2px solid var(--text);padding-top:10px;color:var(--text)}
+.pl-table .good{color:var(--green)}
+.pl-table .bad{color:var(--red)}
+.benchmark-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.bench{background:var(--surface2);border-radius:var(--radius);padding:10px 12px;text-align:center}
+.bench .bl{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--hint);margin-bottom:3px}
+.bench .bv{font-size:13px;font-weight:500;color:var(--text)}
+.bench .bt{font-size:10px;color:var(--hint);margin-top:2px}
+.adspot{background:var(--surface2);border:1px dashed var(--border-med);border-radius:var(--radius);padding:20px;text-align:center;font-size:12px;color:var(--hint);margin:16px 0;min-height:90px;display:flex;align-items:center;justify-content:center}
+.content-section{padding:60px 0 68px;border-top:1px solid var(--border)}
+.content-section h2{font-family:'Source Serif 4',serif;font-size:28px;font-weight:400;letter-spacing:-.3px;margin-bottom:12px}
+.content-section h3{font-family:'Source Serif 4',serif;font-size:20px;font-weight:400;margin:28px 0 8px}
+.content-section p{color:#2a2825;line-height:1.75;margin-bottom:12px;max-width:680px}
+.content-section ul{padding-left:20px;margin-bottom:12px;max-width:680px}
+.content-section li{color:#2a2825;line-height:1.75;margin-bottom:5px}
+.benchmarks-table{width:100%;border-collapse:collapse;font-size:14px;margin:20px 0 28px;max-width:680px}
+.benchmarks-table th{font-size:12px;font-weight:500;text-align:left;padding:8px 12px;background:var(--surface2);border:1px solid var(--border)}
+.benchmarks-table td{padding:8px 12px;border:1px solid var(--border);color:var(--muted)}
+.benchmarks-table td:first-child{color:var(--text);font-weight:500}
+.benchmarks-table .good{color:var(--green)}
+.benchmarks-table .ok{color:var(--amber)}
+.benchmarks-table .bad{color:var(--red)}
+.faq{max-width:680px}
+.faq-item{border-bottom:1px solid var(--border);padding:16px 0}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{font-size:14px;font-weight:500;margin-bottom:6px}
+.faq-a{font-size:13px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:var(--surface)}
+footer p{font-size:12px;color:var(--hint);line-height:1.8;max-width:560px;margin:0 auto}
+.blog-section{padding:60px 0 68px;border-top:1px solid var(--border)}
+.blog-section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px}
+.blog-section-header h2{font-family:'Source Serif 4',serif;font-size:28px;font-weight:400;letter-spacing:-.3px}
+.blog-section-header a.see-all{font-size:13px;color:var(--rust);font-weight:500}
+.blog-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.blog-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;transition:border-color .15s;display:flex;flex-direction:column;text-decoration:none}
+.blog-card:hover{border-color:rgba(42,107,76,0.4);text-decoration:none}
+.blog-card-tag{font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--rust);background:var(--rust-light);padding:3px 9px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.blog-card h3{font-family:'Source Serif 4',serif;font-size:17px;font-weight:400;line-height:1.25;letter-spacing:-.1px;color:var(--text);margin-bottom:8px;flex:1}
+.blog-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:auto}
+.blog-card-meta{font-size:11px;color:var(--hint);margin-top:12px}
+.blog-card-arrow{font-size:13px;font-weight:500;color:var(--rust);margin-top:10px;display:block}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+<span class="logo">café<span>profit</span>calc</span>
+<div class="nav-links">
+<a href="#calculator">Calculator</a>
+<a href="#benchmarks">Benchmarks</a>
+<a href="#faq">FAQ</a>
+<a href="/blog">Blog</a>
+</div>
+</div>
+</nav>
+
+<div class="hero">
+<div class="container">
+<div class="hero-tag">Free · No signup · Instant results</div>
+<h1>Is your café actually making money?</h1>
+<p>Enter your revenue and costs to instantly see your true profit margin — and where your money is leaking.</p>
+</div>
+</div>
+
+<div class="mode-bar">
+<div class="mode-inner">
+<button class="mode-btn active" onclick="setMode('simple',this)">Simple view</button>
+<button class="mode-btn" onclick="setMode('detailed',this)">Detailed P&amp;L</button>
+</div>
+</div>
+
+<div id="calculator" class="calc-section">
+<div class="container">
+<div class="calc-grid">
+<div>
+<!-- SIMPLE MODE -->
+<div id="simple-inputs">
+<div class="card">
+<div class="card-title">Revenue</div>
+<div class="field">
+<label>Weekly revenue</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="s-revenue" value="12000" step="500" oninput="calc()"></div>
+<div class="hint">Total sales including GST/VAT if applicable</div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">The big three costs</div>
+<div class="field">
+<label>Food &amp; beverage cost (%)</label>
+<div class="input-wrap"><input type="number" id="s-food" value="32" step="0.5" min="0" max="100" oninput="calc()"><span class="input-suf">%</span></div>
+<div class="hint">Café benchmark: 28–35%</div>
+</div>
+<div class="field">
+<label>Labour cost (%)</label>
+<div class="input-wrap"><input type="number" id="s-labour" value="35" step="0.5" min="0" max="100" oninput="calc()"><span class="input-suf">%</span></div>
+<div class="hint">Café benchmark: 30–38%</div>
+</div>
+<div class="field">
+<label>Rent &amp; occupancy (%)</label>
+<div class="input-wrap"><input type="number" id="s-rent" value="10" step="0.5" min="0" max="100" oninput="calc()"><span class="input-suf">%</span></div>
+<div class="hint">Benchmark: 6–10%</div>
+</div>
+<div class="field">
+<label>Other overheads (%)</label>
+<div class="input-wrap"><input type="number" id="s-other" value="10" step="0.5" min="0" max="100" oninput="calc()"><span class="input-suf">%</span></div>
+<div class="hint">Utilities, marketing, supplies, POS, insurance</div>
+</div>
+</div>
+</div>
+
+<!-- DETAILED MODE -->
+<div id="detailed-inputs" style="display:none">
+<div class="card">
+<div class="card-title">Revenue</div>
+<div class="field">
+<label>Coffee &amp; beverage sales (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-coffee-rev" value="6000" step="500" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Food &amp; cabinet sales (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-food-rev" value="4500" step="500" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Other revenue (catering, retail, etc.)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-other-rev" value="500" step="100" oninput="calc()"></div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">Cost of goods sold</div>
+<div class="field">
+<label>Coffee &amp; beverage cost (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-coffee-cost" value="1500" step="100" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Food &amp; cabinet cost (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-food-cost" value="1600" step="100" oninput="calc()"></div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">Labour</div>
+<div class="field">
+<label>Kitchen &amp; cabinet staff wages (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-kitchen" value="1800" step="100" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Front of house &amp; barista wages (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-foh" value="1800" step="100" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Management / owner salary (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-mgmt" value="900" step="100" oninput="calc()"></div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">Occupancy &amp; overheads</div>
+<div class="field">
+<label>Rent / lease (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-rent" value="1200" step="100" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Utilities — power, gas, water (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-utilities" value="300" step="50" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Marketing &amp; advertising (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-marketing" value="100" step="50" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Repairs, maintenance &amp; supplies (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-repairs" value="150" step="50" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Insurance (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-insurance" value="100" step="50" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>POS, software &amp; subscriptions (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-software" value="80" step="10" oninput="calc()"></div>
+</div>
+<div class="field">
+<label>Other costs (weekly)</label>
+<div class="input-wrap"><span class="input-pre">$</span><input type="number" id="d-other-cost" value="100" step="50" oninput="calc()"></div>
+</div>
+</div>
+</div>
+</div>
+
+<div>
+<div class="card">
+<div class="section-label">Results</div>
+<div class="result-hero">
+<div class="rh-label">Net profit margin</div>
+<div class="rh-val good" id="r-margin">13.0%</div>
+<div class="rh-sub" id="r-sub">$1,560 net profit per week · $81,120 per year</div>
+</div>
+<div class="verdict-bar good" id="r-verdict">Solid — 13.0% is a healthy margin for a café. The industry average is 2.5–6.5%, so you're performing well. Focus on your highest cost line to find the next improvement.</div>
+<div class="metrics-grid">
+<div class="metric"><div class="ml">Weekly revenue</div><div class="mv" id="r-revenue">$12,000</div></div>
+<div class="metric"><div class="ml">Weekly net profit</div><div class="mv" id="r-profit">$1,560</div></div>
+<div class="metric"><div class="ml">Annual revenue</div><div class="mv" id="r-ann-rev">$624,000</div></div>
+<div class="metric"><div class="ml">Annual net profit</div><div class="mv" id="r-ann-profit">$81,120</div></div>
+</div>
+<div class="section-label">P&amp;L breakdown</div>
+<table class="pl-table" id="pl-table">
+<thead><tr><th>Line item</th><th>Weekly $</th><th>% of rev</th></tr></thead>
+<tbody id="pl-body"><tr class=""><td>Revenue</td><td class="good">$12,000</td><td>100.0%</td></tr><tr class=""><td>Food &amp; beverage cost</td><td class="bad">−$3,840</td><td>32.0%</td></tr><tr class=""><td>Labour</td><td class="bad">−$4,200</td><td>35.0%</td></tr><tr class=""><td>Rent &amp; occupancy</td><td class="bad">−$1,200</td><td>10.0%</td></tr><tr class=""><td>Other overheads</td><td class="bad">−$1,200</td><td>10.0%</td></tr><tr class="total"><td>Net profit</td><td class="good">$1,560</td><td>13.0%</td></tr></tbody>
+</table>
+<div class="benchmark-row">
+<div class="bench"><div class="bl">Your food %</div><div class="bv" id="b-food">32.0%</div><div class="bt">Target: 28–35%</div></div>
+<div class="bench"><div class="bl">Your labour %</div><div class="bv" id="b-labour">35.0%</div><div class="bt">Target: 30–38%</div></div>
+<div class="bench"><div class="bl">Prime cost</div><div class="bv" id="b-prime">67.0%</div><div class="bt">Target: under 65%</div></div>
+</div>
+</div>
+<div class="adspot"><!-- AdSense unit here --></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="adspot"><!-- AdSense leaderboard here --></div>
+
+<div id="benchmarks" class="content-section">
+<h2>Café industry benchmarks</h2>
+<p>These are widely accepted benchmarks for cafés and coffee shops. Your ideal targets will vary by concept, location, and whether you're primarily a coffee bar or a full food café — but these are the numbers every operator should know.</p>
+
+<table class="benchmarks-table">
+<thead><tr><th>Cost line</th><th>Excellent</th><th>Acceptable</th><th>Warning sign</th></tr></thead>
+<tbody>
+<tr><td>Coffee &amp; beverage cost %</td><td class="good">22–28%</td><td class="ok">28–34%</td><td class="bad">34%+</td></tr>
+<tr><td>Food &amp; cabinet cost %</td><td class="good">28–33%</td><td class="ok">33–38%</td><td class="bad">38%+</td></tr>
+<tr><td>Labour cost %</td><td class="good">28–33%</td><td class="ok">33–38%</td><td class="bad">38%+</td></tr>
+<tr><td>Prime cost (food + labour)</td><td class="good">Under 58%</td><td class="ok">58–68%</td><td class="bad">68%+</td></tr>
+<tr><td>Occupancy / rent %</td><td class="good">Under 7%</td><td class="ok">7–12%</td><td class="bad">12%+</td></tr>
+<tr><td>Net profit margin</td><td class="good">12–20%+</td><td class="ok">5–12%</td><td class="bad">Under 5%</td></tr>
+</tbody>
+</table>
+
+<h3>Why cafés run on tighter margins than people expect</h3>
+<p>The average café operates on a net profit margin of 2.5–6.5%. High-performing cafés with strong coffee volume and controlled labour can reach 10–15%. The challenge is that cafés have high labour intensity relative to their revenue — a single barista serving 60–80 coffees per hour generates good volume, but the morning rush is short and staffing must still cover quiet periods.</p>
+<p>Coffee itself has excellent margins — a well-priced flat white costs $0.40–0.70 to make and sells for $5–6, representing a 10–14% cost percentage. But food and cabinet items typically run at 30–38% cost, which pulls the blended number up significantly.</p>
+
+<h3>The most common café profit leaks</h3>
+<ul>
+<li>Milk waste and overpouring — each litre of wasted milk costs real margin at scale</li>
+<li>Overstaffing during quiet periods — café trading patterns are highly concentrated in the morning; roster accordingly</li>
+<li>Cabinet food that doesn't sell — unsold cabinet items become pure waste; order to sell out by end of day</li>
+<li>Rent above 12% of revenue — very difficult to overcome in a café with limited evening trading</li>
+<li>Coffee not priced for current bean costs — specialty coffee bean prices have increased significantly; menu prices often haven't kept pace</li>
+</ul>
+</div>
+
+<div id="faq" style="padding-bottom:72px">
+<h2 style="font-family:'Source Serif 4',serif;font-size:28px;font-weight:400;letter-spacing:-.3px;margin-bottom:8px">Frequently asked questions</h2>
+<div class="faq">
+<div class="faq-item">
+<div class="faq-q">What is a good net profit margin for a café?</div>
+<div class="faq-a">A well-run café should aim for 8–15% net profit margin. The industry average is 2.5–6.5%, which is lower than most people expect. High coffee volume, controlled labour, and a lean cabinet menu are the main drivers of above-average margins.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">What should my coffee cost percentage be?</div>
+<div class="faq-a">Coffee and beverage cost should sit at 22–30% of beverage revenue. Coffee itself typically has a very low cost percentage (10–15%) but milk, syrups, cups, and lids add up. Track your total beverage cost including consumables, not just beans.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Why is café labour cost so high?</div>
+<div class="faq-a">Cafés are labour-intensive businesses with concentrated trading hours. You need enough staff to handle the morning rush but those staff still need to be paid during quiet periods. The key is rostering tightly to your actual trading pattern — typically heavy from 7–11am, much lighter after 2pm.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Should I include my own salary in labour costs?</div>
+<div class="faq-a">Yes — always include a market-rate salary for the owner's role, even if you're not drawing it. A café that only appears profitable because the owner is working for free is not a profitable business. It's an expensive job.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">How often should I check my café's profitability?</div>
+<div class="faq-a">Calculate your labour-to-sales ratio every week — it takes ten minutes and is your fastest early warning system. Do a full P&amp;L review monthly. Many successful café operators also do a daily revenue vs target check to catch slow periods early.</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="blog-section">
+<div class="blog-section-header">
+<h2>From the blog</h2>
+<a href="/blog" class="see-all">All articles →</a>
+</div>
+<div class="blog-cards">
+<a class="blog-card" href="/blog/what-is-a-good-cafe-profit-margin">
+<span class="blog-card-tag">Profitability</span>
+<h3>What is a Good Café Profit Margin?</h3>
+<p>Most cafés average 2.5–6.5% net margin. Here's what the benchmarks mean and how to calculate your real numbers.</p>
+<span class="blog-card-meta">8 min read</span>
+<span class="blog-card-arrow">Read article →</span>
+</a>
+<a class="blog-card" href="/blog/cafe-labour-cost-control">
+<span class="blog-card-tag">Labour Cost</span>
+<h3>Café Labour Cost: How to Control Your Biggest Expense</h3>
+<p>Labour is 30–38% of café revenue and the hardest cost to control. How to roster smarter and reduce it without hurting service.</p>
+<span class="blog-card-meta">7 min read</span>
+<span class="blog-card-arrow">Read article →</span>
+</a>
+<a class="blog-card" href="/blog/coffee-cost-percentage">
+<span class="blog-card-tag">Coffee Cost</span>
+<h3>Coffee Cost Percentage: What Should It Be?</h3>
+<p>Coffee has excellent margins — but milk, cups, and consumables add up. Here's how to calculate and benchmark your real coffee cost.</p>
+<span class="blog-card-meta">6 min read</span>
+<span class="blog-card-arrow">Read article →</span>
+</a>
+<a class="blog-card" href="/blog/why-cafes-fail">
+<span class="blog-card-tag">Business Health</span>
+<h3>Why Cafés Fail: The Financial Reasons</h3>
+<p>Most cafés don't fail because the coffee is bad. They fail for six specific, preventable financial reasons.</p>
+<span class="blog-card-meta">8 min read</span>
+<span class="blog-card-arrow">Read article →</span>
+</a>
+</div>
+</div>
+</div>
+
+<footer>
+<p>CaféProfitCalc — free profitability tools for café and coffee shop operators.<br>
+Results are indicative only. Always consult a qualified accountant for formal financial advice.<br>
+<a href="/">Calculator</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy policy</a></p>
+</footer>
+
+<script>
+let mode = 'simple';
+
+function setMode(m, btn) {
+mode = m;
+document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+document.getElementById('simple-inputs').style.display = m === 'simple' ? 'block' : 'none';
+document.getElementById('detailed-inputs').style.display = m === 'detailed' ? 'block' : 'none';
+calc();
+}
+
+function fmt(n) {
+const abs = Math.abs(n);
+const s = abs >= 1000 ? '$' + Math.round(abs).toLocaleString() : '$' + Math.round(abs);
+return n < 0 ? '−' + s : s;
+}
+function pct(n) { return n.toFixed(1) + '%'; }
+
+function calc() {
+let revenue, foodCost, labourCost, rentCost, otherCost;
+let plRows = [];
+
+if (mode === 'simple') {
+revenue = parseFloat(document.getElementById('s-revenue').value) || 0;
+const foodPct = (parseFloat(document.getElementById('s-food').value) || 0) / 100;
+const labourPct = (parseFloat(document.getElementById('s-labour').value) || 0) / 100;
+const rentPct = (parseFloat(document.getElementById('s-rent').value) || 0) / 100;
+const otherPct = (parseFloat(document.getElementById('s-other').value) || 0) / 100;
+foodCost = revenue * foodPct;
+labourCost = revenue * labourPct;
+rentCost = revenue * rentPct;
+otherCost = revenue * otherPct;
+plRows = [
+{ label: 'Revenue', val: revenue, pctVal: 100, bold: true },
+{ label: 'Food & beverage cost', val: -foodCost, pctVal: foodPct * 100 },
+{ label: 'Labour', val: -labourCost, pctVal: labourPct * 100 },
+{ label: 'Rent & occupancy', val: -rentCost, pctVal: rentPct * 100 },
+{ label: 'Other overheads', val: -otherCost, pctVal: otherPct * 100 },
+];
+} else {
+const coffeeRev = parseFloat(document.getElementById('d-coffee-rev').value) || 0;
+const foodRev = parseFloat(document.getElementById('d-food-rev').value) || 0;
+const otherRev = parseFloat(document.getElementById('d-other-rev').value) || 0;
+revenue = coffeeRev + foodRev + otherRev;
+const coffeeCost = parseFloat(document.getElementById('d-coffee-cost').value) || 0;
+const foodCostAmt = parseFloat(document.getElementById('d-food-cost').value) || 0;
+foodCost = coffeeCost + foodCostAmt;
+const kitchen = parseFloat(document.getElementById('d-kitchen').value) || 0;
+const foh = parseFloat(document.getElementById('d-foh').value) || 0;
+const mgmt = parseFloat(document.getElementById('d-mgmt').value) || 0;
+labourCost = kitchen + foh + mgmt;
+const rent = parseFloat(document.getElementById('d-rent').value) || 0;
+const utilities = parseFloat(document.getElementById('d-utilities').value) || 0;
+const marketing = parseFloat(document.getElementById('d-marketing').value) || 0;
+const repairs = parseFloat(document.getElementById('d-repairs').value) || 0;
+const insurance = parseFloat(document.getElementById('d-insurance').value) || 0;
+const software = parseFloat(document.getElementById('d-software').value) || 0;
+const otherCostAmt = parseFloat(document.getElementById('d-other-cost').value) || 0;
+rentCost = rent;
+otherCost = utilities + marketing + repairs + insurance + software + otherCostAmt;
+plRows = [
+{ label: 'Coffee & beverage sales', val: coffeeRev, pctVal: revenue > 0 ? coffeeRev/revenue*100 : 0 },
+{ label: 'Food & cabinet sales', val: foodRev, pctVal: revenue > 0 ? foodRev/revenue*100 : 0 },
+{ label: 'Other revenue', val: otherRev, pctVal: revenue > 0 ? otherRev/revenue*100 : 0 },
+{ label: 'Total revenue', val: revenue, pctVal: 100, subtotal: true },
+{ label: 'Coffee & beverage cost', val: -coffeeCost, pctVal: revenue > 0 ? coffeeCost/revenue*100 : 0 },
+{ label: 'Food & cabinet cost', val: -foodCostAmt, pctVal: revenue > 0 ? foodCostAmt/revenue*100 : 0 },
+{ label: 'Gross profit', val: revenue - foodCost, pctVal: revenue > 0 ? (revenue-foodCost)/revenue*100 : 0, subtotal: true },
+{ label: 'Kitchen & cabinet wages', val: -kitchen, pctVal: revenue > 0 ? kitchen/revenue*100 : 0 },
+{ label: 'FOH & barista wages', val: -foh, pctVal: revenue > 0 ? foh/revenue*100 : 0 },
+{ label: 'Management salary', val: -mgmt, pctVal: revenue > 0 ? mgmt/revenue*100 : 0 },
+{ label: 'Rent', val: -rent, pctVal: revenue > 0 ? rent/revenue*100 : 0 },
+{ label: 'Utilities', val: -utilities, pctVal: revenue > 0 ? utilities/revenue*100 : 0 },
+{ label: 'Marketing', val: -marketing, pctVal: revenue > 0 ? marketing/revenue*100 : 0 },
+{ label: 'Repairs & maintenance', val: -repairs, pctVal: revenue > 0 ? repairs/revenue*100 : 0 },
+{ label: 'Insurance', val: -insurance, pctVal: revenue > 0 ? insurance/revenue*100 : 0 },
+{ label: 'Software & POS', val: -software, pctVal: revenue > 0 ? software/revenue*100 : 0 },
+{ label: 'Other costs', val: -otherCostAmt, pctVal: revenue > 0 ? otherCostAmt/revenue*100 : 0 },
+];
+}
+
+const totalCosts = foodCost + labourCost + rentCost + otherCost;
+const netProfit = revenue - totalCosts;
+const margin = revenue > 0 ? (netProfit / revenue) * 100 : 0;
+const primeCost = revenue > 0 ? ((foodCost + labourCost) / revenue) * 100 : 0;
+const foodPctOfRev = revenue > 0 ? (foodCost / revenue) * 100 : 0;
+const labourPctOfRev = revenue > 0 ? (labourCost / revenue) * 100 : 0;
+
+const marginEl = document.getElementById('r-margin');
+marginEl.textContent = margin.toFixed(1) + '%';
+marginEl.className = 'rh-val ' + (margin >= 10 ? 'good' : margin >= 5 ? 'ok' : 'bad');
+
+document.getElementById('r-sub').textContent = fmt(netProfit) + ' net profit per week · ' + fmt(netProfit * 52) + ' per year';
+document.getElementById('r-revenue').textContent = fmt(revenue);
+document.getElementById('r-profit').textContent = fmt(netProfit);
+document.getElementById('r-ann-rev').textContent = fmt(revenue * 52);
+document.getElementById('r-ann-profit').textContent = fmt(netProfit * 52);
+
+const verdict = document.getElementById('r-verdict');
+if (margin >= 15) {
+verdict.className = 'verdict-bar good';
+verdict.textContent = 'Excellent — a ' + margin.toFixed(1) + '% margin puts you in the top tier of café operators. Keep watching prime cost and protect those margins as you grow.';
+} else if (margin >= 8) {
+verdict.className = 'verdict-bar good';
+verdict.textContent = 'Solid — ' + margin.toFixed(1) + '% is a healthy margin for a café. The industry average is 2.5–6.5%, so you\'re performing well. Focus on your highest cost line to find the next improvement.';
+} else if (margin >= 3) {
+verdict.className = 'verdict-bar ok';
+verdict.textContent = 'Marginal — ' + margin.toFixed(1) + '% leaves little buffer. Review your prime cost and look for the biggest percentage cost line above benchmark.';
+} else if (margin >= 0) {
+verdict.className = 'verdict-bar bad';
+verdict.textContent = 'Warning — ' + margin.toFixed(1) + '% is dangerously thin. A single bad week or cost increase could put the business in the red. Immediate action needed.';
+} else {
+verdict.className = 'verdict-bar bad';
+verdict.textContent = 'Loss-making — the business is currently spending more than it earns. Review every cost line urgently, starting with prime cost.';
+}
+
+const tbody = document.getElementById('pl-body');
+const allRows = [...plRows, { label: 'Net profit', val: netProfit, pctVal: margin, total: true }];
+tbody.innerHTML = allRows.map(r => {
+const cls = r.total ? 'total' : r.subtotal ? 'subtotal' : '';
+const valCls = r.val < 0 ? 'bad' : (r.label.includes('profit') || r.label.includes('Revenue') || r.label.includes('revenue') || r.label.includes('sales') ? 'good' : '');
+return `<tr class="${cls}"><td>${r.label}</td><td class="${valCls}">${fmt(r.val)}</td><td>${r.pctVal.toFixed(1)}%</td></tr>`;
+}).join('');
+
+document.getElementById('b-food').textContent = pct(foodPctOfRev);
+document.getElementById('b-labour').textContent = pct(labourPctOfRev);
+document.getElementById('b-prime').textContent = pct(primeCost);
+}
+
+calc();
+</script>
+</body>
+</html>
