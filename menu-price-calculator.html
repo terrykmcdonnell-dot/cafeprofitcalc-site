@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Menu Price Calculator: Price Food &amp; Cabinet Items</title>
+<meta name="description" content="Price any café food or cabinet item from its ingredient cost. Get the menu price, profit per item, actual food cost % and a delivery-app price that keeps your margin.">
+<link rel="canonical" href="https://www.cafeprofitcalc.com/menu-price-calculator">
+<meta property="og:title" content="Café Menu Price Calculator: Price Food &amp; Cabinet Items">
+<meta property="og:description" content="Ingredient cost in, menu price out, with waste, GST and delivery-app pricing. Free, no signup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5659107512429407" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Café Menu Price Calculator",
+  "url": "https://www.cafeprofitcalc.com/menu-price-calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Work out café menu prices from ingredient cost and target food cost percentage, including tax and delivery-app pricing.",
+  "author": { "@type": "Person", "name": "Terry McDonnell", "url": "https://www.cafeprofitcalc.com/about" }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How do you price a café menu item?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Add up what goes into one portion, add an allowance for waste and unsold cabinet stock, then divide by your target food cost. A cabinet item costing $3.00 at a 33% target needs to sell for about $9.10 before tax."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What food cost percentage should a café aim for?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Most cafés aim for 28–35% across food. Made-to-order breakfasts usually sit around 28–32%, cabinet food 30–35%, and bought-in pastries often run 40% or more unless they're priced up."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How much waste should I allow for cabinet food?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Allow for what you throw out or discount at the end of the day, not just kitchen trim. For many cafés that's 5–15% of cabinet production. Track it for two weeks and use your real figure."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should café prices be higher on Uber Eats and other delivery apps?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Usually yes. After a 30% commission and packaging, a café item listed at the counter price earns well under half its normal profit. The delivery section of the calculator shows the price that keeps your profit per item the same."
+   }
+  }
+ ]
+}
+</script>
+<style>
+:root{
+  --bg:#faf8f5;--surface:#ffffff;--surface2:#f3f0eb;--surface3:#ece8e1;
+  --border:rgba(0,0,0,0.08);--border-med:rgba(0,0,0,0.14);
+  --text:#1c1a17;--muted:#2a2825;--hint:#6b6660;
+  --rust:#2a6b4c;--rust-light:#edf5f0;--rust-dim:rgba(42,107,76,0.1);
+  --green:#1a5e38;--green-light:#eaf5ef;--amber:#92520a;--amber-light:#fef4e6;
+  --red:#b91c1c;--red-light:#fef2f2;--radius:8px;--radius-lg:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',serif;font-weight:400;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--rust);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:'Source Serif 4',serif;font-size:18px;color:var(--text);letter-spacing:-.2px}
+.logo:hover{text-decoration:none}
+.logo span{color:var(--rust)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+@media(max-width:900px){.nav-links{gap:18px}.nav-links a.hide-sm{display:none}}@media(max-width:700px){.nav-links{display:none}}
+
+.hero{background:var(--surface);border-bottom:1px solid var(--border);padding:56px 24px 48px;text-align:center}
+.hero-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);background:var(--rust-light);padding:4px 14px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-family:'Source Serif 4',serif;font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.1;letter-spacing:-.5px;margin:0 auto 14px;max-width:680px}
+.hero p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.65}
+
+.calc{padding:40px 0}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:820px){.calc-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-title{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;margin-bottom:18px}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;margin-bottom:5px}
+.hint{font-size:11px;color:var(--hint);margin-top:3px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input[type=number],input[type=text],select{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--border-med);border-radius:var(--radius);background:var(--surface);color:var(--text)}
+input:focus,select:focus{outline:2px solid var(--rust-dim);border-color:var(--rust)}
+.prefix{position:relative}
+.prefix span{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.prefix input{padding-left:24px}
+.suffix{position:relative}
+.suffix span{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.suffix input{padding-right:28px}
+
+.ing-row{display:grid;grid-template-columns:1fr 110px 32px;gap:8px;margin-bottom:8px}
+.ing-row button{border:1px solid var(--border-med);background:var(--surface);border-radius:var(--radius);cursor:pointer;color:var(--hint);font-size:16px}
+.ing-row button:hover{color:var(--red);border-color:var(--red)}
+.add-btn{font:inherit;font-size:13px;color:var(--rust);background:var(--rust-light);border:none;border-radius:var(--radius);padding:7px 12px;cursor:pointer;margin-top:4px}
+.add-btn:hover{background:var(--rust-dim)}
+.subtotal{display:flex;justify-content:space-between;font-size:14px;padding-top:12px;margin-top:12px;border-top:1px solid var(--border)}
+.subtotal strong{font-weight:600}
+
+.result-hero{background:var(--text);border-radius:var(--radius-lg);padding:28px 24px;margin-bottom:14px;color:#fff;text-align:center}
+.result-hero .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.result-hero .big{font-family:'Source Serif 4',serif;font-size:48px;line-height:1.1;margin:6px 0 4px}
+.result-hero .sub{font-size:13px;opacity:.8}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center}
+.stat .v{font-size:20px;font-weight:600}
+.stat .l{font-size:11px;color:var(--hint)}
+.verdict{border-radius:var(--radius);padding:12px 14px;font-size:14px;margin-bottom:14px}
+.verdict.good{background:var(--green-light);color:var(--green)}
+.verdict.warn{background:var(--amber-light);color:var(--amber)}
+.verdict.bad{background:var(--red-light);color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--border)}
+th{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--hint)}
+td.num,th.num{text-align:right}
+tr.hl td{background:var(--rust-light);font-weight:600}
+
+.content{padding:16px 0 56px}
+.content .inner{max-width:720px;margin:0 auto}
+.content h2{font-family:'Source Serif 4',serif;font-weight:400;font-size:26px;line-height:1.2;margin:40px 0 12px}
+.content h3{font-size:17px;font-weight:600;margin:24px 0 8px}
+.content p{font-size:16px;margin-bottom:14px}
+.content ul{margin:0 0 14px 20px;font-size:16px}
+.content li{margin-bottom:6px}
+.formula{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--rust);border-radius:var(--radius);padding:14px 16px;font-size:16px;margin:0 0 16px}
+.content table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;overflow:hidden}
+.content td,.content th{padding:10px 12px}
+.related{background:var(--surface2);border-radius:var(--radius-lg);padding:20px 22px;margin-top:36px}
+.related p{margin-bottom:8px;font-weight:600}
+.related ul{margin-bottom:0}
+.byline{font-size:13px;color:var(--hint);margin-top:28px}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding:28px 24px;text-align:center;font-size:13px;color:var(--hint);line-height:1.8}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">café<span>profit</span>calc</a>
+    <div class="nav-links">
+      <a href="/">Calculator</a>
+      <a href="/coffee-cost-calculator">Coffee cost</a>
+      <a href="#calculator">Menu pricing</a>
+      <a href="/break-even-calculator">Break-even</a>
+      <a href="/menu-engineering-calculator">Menu engineering</a>
+      <a href="/blog" class="hide-sm">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-tag">Free café menu price calculator</div>
+  <h1>What should this item sell for?</h1>
+  <p>Add up what goes into one portion, allow for what doesn't sell, pick your target food cost, and get a price that holds its margin at the counter and on the delivery apps.</p>
+</header>
+
+<main>
+<section class="calc" id="calculator">
+  <div class="container">
+    <div class="calc-grid">
+
+      <!-- INPUTS -->
+      <div>
+        <div class="card">
+          <div class="card-title">1. Item cost</div>
+          <div class="section-label">Ingredients for one portion</div>
+          <div id="ingredients"></div>
+          <button class="add-btn" type="button" id="addIng">+ Add ingredient</button>
+          <div class="field" style="margin-top:16px">
+            <label for="waste">Waste and unsold stock allowance</label>
+            <div class="suffix"><input type="number" id="waste" value="8" min="0" max="50" step="0.5"><span>%</span></div>
+            <div class="hint">Trim, spoilage and cabinet food thrown out at close. 5–15% is typical for cabinet items.</div>
+          </div>
+          <div class="subtotal"><span>Item cost</span><strong id="plateCost">$0.00</strong></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">2. Your targets</div>
+          <div class="row2">
+            <div class="field">
+              <label for="target">Target food cost</label>
+              <div class="suffix"><input type="number" id="target" value="33" min="5" max="80" step="0.5"><span>%</span></div>
+            </div>
+            <div class="field">
+              <label for="tax">Tax on menu price</label>
+              <div class="suffix"><input type="number" id="tax" value="0" min="0" max="30" step="0.5"><span>%</span></div>
+            </div>
+          </div>
+          <div class="hint" style="margin:-6px 0 14px">Use 15 for NZ GST, 10 for Australian GST, 20 for UK VAT. Leave at 0 if your menu shows prices before tax, as most US menus do.</div>
+          <div class="row2">
+            <div class="field">
+              <label for="rounding">Round menu price to</label>
+              <select id="rounding">
+                <option value="none">Don't round</option>
+                <option value="0.5" selected>Nearest .50</option>
+                <option value="1">Whole dollar</option>
+                <option value="0.9">Ending in .90</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="current">Current menu price <span style="color:var(--hint)">(optional)</span></label>
+              <div class="prefix"><span>$</span><input type="number" id="current" placeholder="0.00" min="0" step="0.5"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">3. Delivery apps <span style="color:var(--hint);font-family:'Source Sans 3',sans-serif;font-size:13px">(optional)</span></div>
+          <div class="row2">
+            <div class="field">
+              <label for="commission">App commission</label>
+              <div class="suffix"><input type="number" id="commission" value="30" min="0" max="60" step="0.5"><span>%</span></div>
+            </div>
+            <div class="field">
+              <label for="packaging">Packaging per order</label>
+              <div class="prefix"><span>$</span><input type="number" id="packaging" value="0.40" min="0" step="0.05"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div>
+        <div class="result-hero">
+          <div class="lbl">Suggested menu price</div>
+          <div class="big" id="priceMenu">$0.00</div>
+          <div class="sub" id="priceSub">&nbsp;</div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="v" id="gp">$0.00</div><div class="l">Profit per item</div></div>
+          <div class="stat"><div class="v" id="actualFc">0%</div><div class="l">Actual food cost</div></div>
+          <div class="stat"><div class="v" id="markup">0×</div><div class="l">Markup on cost</div></div>
+        </div>
+
+        <div class="verdict" id="currentVerdict" style="display:none"></div>
+
+        <div class="card">
+          <div class="card-title">Price at different food cost targets</div>
+          <table>
+            <thead><tr><th>Food cost</th><th class="num">Price ex tax</th><th class="num">Menu price</th><th class="num">Profit / item</th></tr></thead>
+            <tbody id="ladder"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Delivery app price</div>
+          <p style="font-size:14px;margin-bottom:12px">To keep the same <strong id="dGpLbl">$0.00</strong> profit per item after commission and packaging, list it at:</p>
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <span style="font-family:'Playfair Display',serif;font-size:32px" id="priceDelivery">$0.00</span>
+            <span style="font-size:13px;color:var(--hint)" id="deliveryUplift"></span>
+          </div>
+          <div class="hint" style="font-size:12px;color:var(--hint);margin-top:6px" id="deliveryNote"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<article class="content">
+  <div class="inner">
+
+    <h2>How to price a café menu item</h2>
+    <p>Price from cost, not from the café down the road. The cost sets the minimum; the market sets the ceiling.</p>
+    <div class="formula"><strong>Menu price (ex tax) = item cost ÷ target food cost %</strong></div>
+    <p>The item cost is everything in one portion plus an allowance for waste. In a café, that allowance has to cover more than kitchen trim. Cabinet food that's still there at 3pm gets discounted, given to staff or binned, and its cost has to be carried by the items that did sell.</p>
+
+    <h2>A worked example</h2>
+    <p>The calculator opens with a ham and cheese croissant: a $1.10 butter croissant, $0.85 of ham, $0.45 of Swiss cheese and $0.30 of tomato, greens and mustard, which comes to $2.70. With an 8% allowance for what doesn't sell, the real cost is $2.92.</p>
+    <p>At a 33% target that gives $8.85 before tax, which rounds to a menu price of $9.00: a real food cost of 32.4% and $6.08 profit on every one sold. In New Zealand, with 15% GST on top, the same item rounds to $10.50. On a delivery app at 30% commission with $0.40 of packaging, it needs to list at about $13.50 to earn the same $6.08; listed at the counter price of $9.00, it would earn $2.98.</p>
+
+    <h2>Food cost targets for cafés</h2>
+    <table>
+      <thead><tr><th>Item type</th><th class="num">Typical food cost</th></tr></thead>
+      <tbody>
+        <tr><td>Made-to-order breakfasts and brunch</td><td class="num">28–32%</td></tr>
+        <tr><td>Cabinet food: toasties, wraps, salads</td><td class="num">30–35%</td></tr>
+        <tr><td>House-baked slices, muffins, banana bread</td><td class="num">15–25%</td></tr>
+        <tr><td>Bought-in pastries and cakes</td><td class="num">35–45%</td></tr>
+        <tr><td>Smoothies and fresh juices</td><td class="num">20–30%</td></tr>
+      </tbody>
+    </table>
+    <p>Across the whole food side, 28–35% is the usual benchmark. House baking is where most cafés make their best food margin; bought-in cabinet items are where most lose it, because they're priced to match what the supplier suggests rather than worked back from cost. Coffee runs on different numbers again: the <a href="/coffee-cost-calculator">coffee cost calculator</a> works those out.</p>
+
+    <h2>Three things that make café prices wrong</h2>
+    <h3>Ignoring what goes in the bin</h3>
+    <p>A toastie that costs $2.70 to make but sells only nine times out of ten really costs $3.00 per sale. Track two weeks of end-of-day waste by item and you'll know your real allowance. Items with high waste either need a higher price, a smaller batch, or a later bake.</p>
+    <h3>Pricing on the GST-inclusive figure</h3>
+    <p>If your menu shows prices including GST, the tax isn't yours. A $12.50 item in New Zealand is really a $10.87 sale. Enter your tax rate in the calculator so the food cost percentage is worked out on the money you keep.</p>
+    <h3>One price for the counter and the apps</h3>
+    <p>Delivery commission comes off the top. On a typical café item, listing at the counter price on a delivery app leaves well under half the normal profit. Many cafés settle on app prices 20–30% higher and accept a slightly thinner margin there; at least know what that costs.</p>
+
+    <h2>When the market won't take the price</h2>
+    <p>If the price the calculator gives you is above what customers will pay, don't drop the price. Change the item: a smaller portion of the expensive ingredient, a cheaper supplier, a house-made version of something bought in, or a batch size that cuts end-of-day waste. If none of those work, the item may not belong on the menu. The <a href="/menu-engineering-calculator">menu engineering calculator</a> shows which items are worth keeping on sales and profit together.</p>
+    <p>Our guide to <a href="/blog/cafe-menu-pricing">pricing a café menu for profit</a> covers coffee pricing, cabinet pricing and how to put prices up without losing regulars. If food cost is running high overall, see <a href="/blog/how-to-reduce-cafe-food-cost">how to reduce café food cost</a>.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do you price a café menu item?</h3>
+    <p>Add up what goes into one portion, add an allowance for waste and unsold cabinet stock, then divide by your target food cost. A cabinet item costing $3.00 at a 33% target needs to sell for about $9.10 before tax.</p>
+    <h3>What food cost percentage should a café aim for?</h3>
+    <p>Most cafés aim for 28–35% across food. Made-to-order breakfasts usually sit around 28–32%, cabinet food 30–35%, and bought-in pastries often run 40% or more unless they're priced up.</p>
+    <h3>How much waste should I allow for cabinet food?</h3>
+    <p>Allow for what you throw out or discount at the end of the day, not just kitchen trim. For many cafés that's 5–15% of cabinet production. Track it for two weeks and use your real figure.</p>
+    <h3>Should café prices be higher on Uber Eats and other delivery apps?</h3>
+    <p>Usually yes. After a 30% commission and packaging, a café item listed at the counter price earns well under half its normal profit. The delivery section of the calculator shows the price that keeps your profit per item the same.</p>
+
+    <div class="related">
+      <p>Related</p>
+      <ul>
+        <li><a href="/">Café profit calculator: your real margin from a week of figures</a></li>
+        <li><a href="/coffee-cost-calculator">Coffee cost per cup calculator</a></li>
+        <li><a href="/menu-engineering-calculator">Café menu engineering calculator</a></li>
+        <li><a href="/blog/cafe-menu-pricing">How to price your café menu for profit</a></li>
+      </ul>
+    </div>
+
+    <p class="byline">Written by <a href="/about">Terry McDonnell</a>, chartered accountant, former owner of seven fast-food franchises and a restaurant. Results are indicative only.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <p>CaféProfitCalc — free profitability tools for café and coffee shop operators.<br>
+  Results are indicative only. Always consult a qualified accountant for formal financial advice.<br>
+  <a href="/">Profit calculator</a> · <a href="/coffee-cost-calculator">Coffee cost calculator</a> · <a href="/menu-price-calculator">Menu price calculator</a> · <a href="/break-even-calculator">Break-even calculator</a> · <a href="/menu-engineering-calculator">Menu engineering calculator</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy policy</a></p>
+</footer>
+
+<script>
+(function(){
+  var defaults = [
+    ['Butter croissant', 1.10],
+    ['Ham, 40 g', 0.85],
+    ['Swiss cheese, 25 g', 0.45],
+    ['Tomato, greens, mustard', 0.30]
+  ];
+  var list = document.getElementById('ingredients');
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(id){ var v = parseFloat($(id).value); return isFinite(v) ? v : 0; };
+  var money = function(v){ return '$' + (isFinite(v) ? v : 0).toFixed(2); };
+  var pct = function(v){ return (isFinite(v) ? v : 0).toFixed(1) + '%'; };
+
+  function addRow(name, cost){
+    var row = document.createElement('div');
+    row.className = 'ing-row';
+    row.innerHTML =
+      '<input type="text" placeholder="Ingredient" aria-label="Ingredient name">' +
+      '<div class="prefix"><span>$</span><input type="number" min="0" step="0.05" placeholder="0.00" aria-label="Cost per portion"></div>' +
+      '<button type="button" aria-label="Remove ingredient">×</button>';
+    row.querySelector('input[type=text]').value = name || '';
+    if (cost != null) row.querySelector('input[type=number]').value = cost.toFixed(2);
+    row.querySelector('button').onclick = function(){ row.remove(); calc(); };
+    row.querySelector('input[type=number]').addEventListener('input', calc);
+    list.appendChild(row);
+  }
+
+  function round(price, mode){
+    if (mode === 'none' || price <= 0) return price;
+    if (mode === '0.9') { var r = Math.ceil(price - 0.9) + 0.9; return r < price - 0.001 ? r + 1 : r; }
+    var step = parseFloat(mode);
+    return Math.ceil(price / step - 1e-9) * step;
+  }
+
+  function calc(){
+    var raw = 0;
+    list.querySelectorAll('input[type=number]').forEach(function(i){ var v = parseFloat(i.value); if (isFinite(v)) raw += v; });
+    var waste = num('waste') / 100;
+    var plate = raw * (1 + waste);
+    var target = num('target') / 100;
+    var tax = num('tax') / 100;
+    var mode = $('rounding').value;
+
+    $('plateCost').textContent = money(plate);
+
+    if (plate <= 0 || target <= 0) {
+      $('priceMenu').textContent = '$0.00';
+      $('priceSub').textContent = 'Add ingredient costs to see a price';
+      return;
+    }
+
+    var exTax = plate / target;
+    var menu = round(exTax * (1 + tax), mode);
+    var exTaxRounded = menu / (1 + tax);
+    var gp = exTaxRounded - plate;
+    var fc = plate / exTaxRounded * 100;
+
+    $('priceMenu').textContent = money(menu);
+    $('priceSub').textContent = tax > 0
+      ? money(exTaxRounded) + ' ex tax + ' + money(menu - exTaxRounded) + ' tax'
+      : 'Before any sales tax';
+    $('gp').textContent = money(gp);
+    $('actualFc').textContent = pct(fc);
+    $('markup').textContent = (exTaxRounded / plate).toFixed(2) + '×';
+
+    // ladder
+    var rows = '';
+    [22, 25, 28, 30, 32, 35, 38].forEach(function(t){
+      var ex = plate / (t / 100);
+      var m = round(ex * (1 + tax), mode);
+      var exR = m / (1 + tax);
+      var hl = Math.abs(t - target * 100) < 0.01 ? ' class="hl"' : '';
+      rows += '<tr' + hl + '><td>' + t + '%</td><td class="num">' + money(exR) + '</td><td class="num">' + money(m) + '</td><td class="num">' + money(exR - plate) + '</td></tr>';
+    });
+    $('ladder').innerHTML = rows;
+
+    // current price check
+    var cur = num('current');
+    var v = $('currentVerdict');
+    if (cur > 0) {
+      var curEx = cur / (1 + tax);
+      var curFc = plate / curEx * 100;
+      var curGp = curEx - plate;
+      var gap = menu - cur;
+      v.style.display = 'block';
+      if (curFc <= target * 100 + 0.5) {
+        v.className = 'verdict good';
+        v.textContent = 'At ' + money(cur) + ' your food cost is ' + pct(curFc) + ', on or under target. You keep ' + money(curGp) + ' per item.';
+      } else if (curFc <= target * 100 + 5) {
+        v.className = 'verdict warn';
+        v.textContent = 'At ' + money(cur) + ' your food cost is ' + pct(curFc) + ', above your ' + pct(target * 100) + ' target. Moving to ' + money(menu) + ' would add ' + money(gp - curGp) + ' profit to every item sold.';
+      } else {
+        v.className = 'verdict bad';
+        v.textContent = 'At ' + money(cur) + ' your food cost is ' + pct(curFc) + '. Against your target this dish is ' + money(gap) + ' underpriced, and you keep only ' + money(curGp) + ' per item.';
+      }
+    } else {
+      v.style.display = 'none';
+    }
+
+    // delivery
+    var c = num('commission') / 100;
+    var pack = num('packaging');
+    $('dGpLbl').textContent = money(gp);
+    if (c >= 1) { $('priceDelivery').textContent = '—'; return; }
+    // Commission is charged on the tax-inclusive price; tax is still owed on the full price.
+    // Net to you ex tax = P/(1+tax) - c*P ; need = plate + pack + gp
+    var need = plate + pack + gp;
+    var denom = 1 / (1 + tax) - c;
+    if (denom <= 0) { $('priceDelivery').textContent = '—'; $('deliveryNote').textContent = 'Commission too high to recover at any price.'; return; }
+    var dPrice = round(need / denom, mode);
+    $('priceDelivery').textContent = money(dPrice);
+    $('deliveryUplift').textContent = '+' + ((dPrice / menu - 1) * 100).toFixed(0) + '% vs counter price';
+    var atMenuNet = menu / (1 + tax) - c * menu - plate - pack;
+    $('deliveryNote').textContent = 'Listed at the counter price of ' + money(menu) + ', you would keep ' + money(atMenuNet) + ' per order instead of ' + money(gp) + '.';
+  }
+
+  defaults.forEach(function(d){ addRow(d[0], d[1]); });
+  $('addIng').onclick = function(){ addRow('', null); list.lastChild.querySelector('input').focus(); };
+  ['waste','target','tax','rounding','current','commission','packaging'].forEach(function(id){
+    $(id).addEventListener('input', calc);
+    $(id).addEventListener('change', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Cost Per Cup Calculator: What Each Coffee Costs You</title>
+<meta name="description" content="Work out the real cost of a flat white, latte or long black: beans, milk, milk waste, cups and alt milks. See cost %, profit per cup and the price you need.">
+<link rel="canonical" href="https://www.cafeprofitcalc.com/coffee-cost-calculator">
+<meta property="og:title" content="Coffee Cost Per Cup Calculator: What Each Coffee Costs You">
+<meta property="og:description" content="Beans, milk, waste, cups and alt milks in one number. Cost %, profit per cup and yearly coffee profit. Free, no signup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5659107512429407" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Coffee Cost Per Cup Calculator",
+  "url": "https://www.cafeprofitcalc.com/coffee-cost-calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Calculate the cost per cup of espresso drinks including beans, milk, waste, takeaway packaging and alternative milks.",
+  "author": { "@type": "Person", "name": "Terry McDonnell", "url": "https://www.cafeprofitcalc.com/about" }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How much does a cup of coffee cost to make?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Most cafés spend $1.00–$1.50 to make a milk coffee once beans, milk, milk waste, a share of takeaway cups and lids, and alternative milks are counted. A long black is closer to $0.70–$0.90. The beans are usually only half to two-thirds of the cost."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What should my coffee cost percentage be?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A single milk coffee usually lands at 15–25% of its selling price. Across all coffee and beverage sales, 22–30% is the usual target. Above about 32% points to milk waste, underpriced drinks, or a bean price rise that hasn't been passed on."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How many coffees do you get from a kilo of beans?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "At an 18–20g double-shot dose, a kilo gives about 50–55 coffees. Purging the grinder, dialling in each morning and remakes usually take that down to 45–50 in practice."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should I charge extra for oat milk?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, in most cafés. Oat and other plant milks cost two to three times as much as dairy per litre. A surcharge of $0.50–$1.00 usually covers the extra cost; without one, every alternative-milk coffee earns less than the dairy version."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How much does a bean price rise add to each coffee?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Every $5 per kilo adds about $0.10 to a coffee at a 20g dose. On 200 coffees a day over six days a week, that's around $6,000 a year."
+   }
+  }
+ ]
+}
+</script>
+<style>
+:root{
+  --bg:#faf8f5;--surface:#ffffff;--surface2:#f3f0eb;--surface3:#ece8e1;
+  --border:rgba(0,0,0,0.08);--border-med:rgba(0,0,0,0.14);
+  --text:#1c1a17;--muted:#2a2825;--hint:#6b6660;
+  --rust:#2a6b4c;--rust-light:#edf5f0;--rust-dim:rgba(42,107,76,0.1);
+  --green:#1a5e38;--green-light:#eaf5ef;--amber:#92520a;--amber-light:#fef4e6;
+  --red:#b91c1c;--red-light:#fef2f2;--radius:8px;--radius-lg:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',serif;font-weight:400;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--rust);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:'Source Serif 4',serif;font-size:18px;color:var(--text);letter-spacing:-.2px}
+.logo:hover{text-decoration:none}
+.logo span{color:var(--rust)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+@media(max-width:900px){.nav-links{gap:18px}.nav-links a.hide-sm{display:none}}@media(max-width:700px){.nav-links{display:none}}
+
+.hero{background:var(--surface);border-bottom:1px solid var(--border);padding:56px 24px 48px;text-align:center}
+.hero-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);background:var(--rust-light);padding:4px 14px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-family:'Source Serif 4',serif;font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.1;letter-spacing:-.5px;margin:0 auto 14px;max-width:680px}
+.hero p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.65}
+
+.calc{padding:40px 0}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:820px){.calc-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-title{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;margin-bottom:18px}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;margin-bottom:5px}
+.hint{font-size:11px;color:var(--hint);margin-top:3px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input[type=number],input[type=text],select{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--border-med);border-radius:var(--radius);background:var(--surface);color:var(--text)}
+input:focus,select:focus{outline:2px solid var(--rust-dim);border-color:var(--rust)}
+.prefix{position:relative}
+.prefix span{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.prefix input{padding-left:24px}
+.suffix{position:relative}
+.suffix span{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.suffix input{padding-right:28px}
+
+.ing-row{display:grid;grid-template-columns:1fr 110px 32px;gap:8px;margin-bottom:8px}
+.ing-row button{border:1px solid var(--border-med);background:var(--surface);border-radius:var(--radius);cursor:pointer;color:var(--hint);font-size:16px}
+.ing-row button:hover{color:var(--red);border-color:var(--red)}
+.add-btn{font:inherit;font-size:13px;color:var(--rust);background:var(--rust-light);border:none;border-radius:var(--radius);padding:7px 12px;cursor:pointer;margin-top:4px}
+.add-btn:hover{background:var(--rust-dim)}
+.subtotal{display:flex;justify-content:space-between;font-size:14px;padding-top:12px;margin-top:12px;border-top:1px solid var(--border)}
+.subtotal strong{font-weight:600}
+
+.result-hero{background:var(--text);border-radius:var(--radius-lg);padding:28px 24px;margin-bottom:14px;color:#fff;text-align:center}
+.result-hero .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.result-hero .big{font-family:'Source Serif 4',serif;font-size:48px;line-height:1.1;margin:6px 0 4px}
+.result-hero .sub{font-size:13px;opacity:.8}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center}
+.stat .v{font-size:20px;font-weight:600}
+.stat .l{font-size:11px;color:var(--hint)}
+.verdict{border-radius:var(--radius);padding:12px 14px;font-size:14px;margin-bottom:14px}
+.verdict.good{background:var(--green-light);color:var(--green)}
+.verdict.warn{background:var(--amber-light);color:var(--amber)}
+.verdict.bad{background:var(--red-light);color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--border)}
+th{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--hint)}
+td.num,th.num{text-align:right}
+tr.hl td{background:var(--rust-light);font-weight:600}
+
+.content{padding:16px 0 56px}
+.content .inner{max-width:720px;margin:0 auto}
+.content h2{font-family:'Source Serif 4',serif;font-weight:400;font-size:26px;line-height:1.2;margin:40px 0 12px}
+.content h3{font-size:17px;font-weight:600;margin:24px 0 8px}
+.content p{font-size:16px;margin-bottom:14px}
+.content ul{margin:0 0 14px 20px;font-size:16px}
+.content li{margin-bottom:6px}
+.formula{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--rust);border-radius:var(--radius);padding:14px 16px;font-size:16px;margin:0 0 16px}
+.content table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;overflow:hidden}
+.content td,.content th{padding:10px 12px}
+.related{background:var(--surface2);border-radius:var(--radius-lg);padding:20px 22px;margin-top:36px}
+.related p{margin-bottom:8px;font-weight:600}
+.related ul{margin-bottom:0}
+.byline{font-size:13px;color:var(--hint);margin-top:28px}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding:28px 24px;text-align:center;font-size:13px;color:var(--hint);line-height:1.8}
+</style>
+<style>
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.presets button{font:inherit;font-size:14px;border:1px solid var(--border-med);background:var(--surface);color:var(--text);border-radius:20px;padding:6px 14px;cursor:pointer}
+.presets button.on{background:var(--rust);border-color:var(--rust);color:#fff}
+.breakdown{display:flex;height:12px;border-radius:6px;overflow:hidden;margin:6px 0 10px;background:var(--surface3)}
+.breakdown span{display:block;height:100%}
+.legend{display:grid;grid-template-columns:1fr auto auto;gap:4px 14px;font-size:14px}
+.legend .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.legend .num{text-align:right}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">café<span>profit</span>calc</a>
+    <div class="nav-links">
+      <a href="/">Calculator</a>
+      <a href="#calculator">Coffee cost</a>
+      <a href="/menu-price-calculator">Menu pricing</a>
+      <a href="/break-even-calculator">Break-even</a>
+      <a href="/menu-engineering-calculator">Menu engineering</a>
+      <a href="/blog" class="hide-sm">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-tag">Free coffee cost calculator</div>
+  <h1>What does each coffee really cost you?</h1>
+  <p>Beans are only part of it. Add the milk, the milk you pour down the sink, the takeaway cup and lid, and the oat milk, and see what's left of the price.</p>
+</header>
+
+<main>
+<section class="calc" id="calculator">
+  <div class="container">
+    <div class="calc-grid">
+
+      <div>
+        <div class="card">
+          <div class="card-title">1. The drink</div>
+          <div class="presets" id="presets">
+            <button type="button" data-p="fw" class="on">Flat white</button>
+            <button type="button" data-p="latte">Latte</button>
+            <button type="button" data-p="capp">Cappuccino</button>
+            <button type="button" data-p="lb">Long black</button>
+            <button type="button" data-p="mocha">Mocha</button>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="beanKg">Beans, price per kg</label><div class="prefix"><span>$</span><input type="number" id="beanKg" value="38" min="0" step="0.5"></div></div>
+            <div class="field"><label for="dose">Coffee per drink</label><div class="suffix"><input type="number" id="dose" value="20" min="0" step="0.5"><span>g</span></div><div class="hint">A double shot is usually 18–22g.</div></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="milkMl">Milk per drink</label><div class="suffix"><input type="number" id="milkMl" min="0" step="5"><span>ml</span></div></div>
+            <div class="field"><label for="milkL">Dairy milk, price per litre</label><div class="prefix"><span>$</span><input type="number" id="milkL" value="1.70" min="0" step="0.05"></div></div>
+          </div>
+          <div class="field"><label for="milkWaste">Milk waste</label><div class="suffix"><input type="number" id="milkWaste" value="10" min="0" max="60" step="1"><span>%</span></div><div class="hint">Oversteaming and pitcher dregs. Most cafés measure 8–15% the first time they check.</div></div>
+          <div class="field"><label for="extras">Chocolate, syrup, sugar</label><div class="prefix"><span>$</span><input type="number" id="extras" min="0" step="0.05"></div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">2. Alternative milk and takeaway</div>
+          <div class="row2">
+            <div class="field"><label for="altShare">Drinks with oat or other milk</label><div class="suffix"><input type="number" id="altShare" value="20" min="0" max="100" step="1"><span>%</span></div></div>
+            <div class="field"><label for="altL">Alt milk, price per litre</label><div class="prefix"><span>$</span><input type="number" id="altL" value="3.20" min="0" step="0.05"></div></div>
+          </div>
+          <div class="field"><label for="altCharge">Alt milk surcharge you charge</label><div class="prefix"><span>$</span><input type="number" id="altCharge" value="0.80" min="0" step="0.1"></div></div>
+          <div class="row2">
+            <div class="field"><label for="toShare">Takeaway share</label><div class="suffix"><input type="number" id="toShare" value="55" min="0" max="100" step="1"><span>%</span></div></div>
+            <div class="field"><label for="cupCost">Cup, lid and sleeve</label><div class="prefix"><span>$</span><input type="number" id="cupCost" value="0.24" min="0" step="0.01"></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">3. Price and volume</div>
+          <div class="row2">
+            <div class="field"><label for="price">Menu price</label><div class="prefix"><span>$</span><input type="number" id="price" min="0" step="0.1"></div></div>
+            <div class="field"><label for="tax">Tax included in price</label><div class="suffix"><input type="number" id="tax" value="0" min="0" max="30" step="0.5"><span>%</span></div></div>
+          </div>
+          <div class="hint" style="margin:-6px 0 14px">15 for NZ GST, 10 for Australian GST, 20 for UK VAT. Leave at 0 if your prices exclude tax.</div>
+          <div class="row2">
+            <div class="field"><label for="target">Target cost per cup</label><div class="suffix"><input type="number" id="target" value="20" min="5" max="60" step="0.5"><span>%</span></div></div>
+            <div class="field"><label for="cups">Coffees per day</label><input type="number" id="cups" value="200" min="0" step="10"></div>
+          </div>
+          <div class="field"><label for="days">Trading days per week</label><input type="number" id="days" value="6" min="1" max="7" step="1"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="result-hero">
+          <div class="lbl">Cost per cup</div>
+          <div class="big" id="cost">$0.00</div>
+          <div class="sub" id="costSub">&nbsp;</div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="v" id="pct">0%</div><div class="l">Cost % of price</div></div>
+          <div class="stat"><div class="v" id="profit">$0.00</div><div class="l">Profit per cup</div></div>
+          <div class="stat"><div class="v" id="yearProfit">$0</div><div class="l">Gross profit a year at this price</div></div>
+        </div>
+
+        <div class="verdict" id="verdict"></div>
+
+        <div class="card">
+          <div class="card-title">Where the money goes</div>
+          <div class="breakdown" id="bar"></div>
+          <div class="legend" id="legend"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Price to hit your target</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <span style="font-size:32px" id="targetPrice">$0.00</span>
+            <span style="font-size:13px;color:var(--hint)" id="targetNote"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">What leaks and price rises cost a year</div>
+          <table>
+            <tbody>
+              <tr><td>Milk waste</td><td class="num" id="wasteYear"></td></tr>
+              <tr><td>Alt milk not covered by the surcharge</td><td class="num" id="altYear"></td></tr>
+              <tr><td>Takeaway cups and lids</td><td class="num" id="cupYear"></td></tr>
+              <tr><td>Each $0.10 on the menu price adds</td><td class="num" id="tenCents"></td></tr>
+            </tbody>
+          </table>
+          <table style="margin-top:14px">
+            <thead><tr><th>Beans per kg</th><th class="num">Cost per cup</th><th class="num">Cost %</th></tr></thead>
+            <tbody id="beanLadder"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<article class="content">
+  <div class="inner">
+
+    <h2>How to work out the cost of a cup of coffee</h2>
+    <p>Most café owners can tell you what a kilo of beans costs. Far fewer know what a flat white costs, because the beans are only half to two-thirds of it. The real cost per cup is the sum of six things:</p>
+    <div class="formula"><strong>Cost per cup = beans + milk + milk waste + alt milk premium + takeaway packaging + extras</strong></div>
+    <ul>
+      <li><strong>Beans:</strong> price per kilo ÷ 1,000 × grams per drink. At $38 a kilo and a 20g double shot, that's $0.76.</li>
+      <li><strong>Milk:</strong> millilitres in the drink × price per litre. 170ml at $1.70 a litre is $0.29.</li>
+      <li><strong>Milk waste:</strong> what gets oversteamed, left in the pitcher or tipped out. 10% is common.</li>
+      <li><strong>Alternative milk:</strong> the extra cost of oat, soy or almond over dairy, averaged across the share of customers who choose it.</li>
+      <li><strong>Takeaway packaging:</strong> cup, lid and sleeve, averaged across your dine-in and takeaway mix.</li>
+      <li><strong>Extras:</strong> chocolate, syrups and sugar.</li>
+    </ul>
+
+    <h2>A worked example</h2>
+    <p>The calculator opens with a flat white: $38 beans at a 20g dose, 170ml of dairy milk at $1.70 a litre with 10% waste, 20% of customers on oat milk at $3.20 a litre with a $0.80 surcharge, and 55% takeaway at $0.24 for the cup, lid and sleeve. That flat white costs $1.27 to make, and the beans are 60% of it. At $5.50, plus the average oat surcharge, the cost is 22.4% of the price and each cup leaves $4.39. At 200 coffees a day, six days a week, milk waste costs about $2,100 a year and takeaway cups and lids about $8,200. To get to a 20% cost the flat white needs to be $6.20.</p>
+
+    <h2>What your coffee cost percentage should be</h2>
+    <table>
+      <thead><tr><th>Measure</th><th class="num">Typical range</th></tr></thead>
+      <tbody>
+        <tr><td>Long black or espresso, per cup</td><td class="num">12–18%</td></tr>
+        <tr><td>Milk coffee, per cup, all costs counted</td><td class="num">15–25%</td></tr>
+        <tr><td>All coffee and beverage sales</td><td class="num">22–30%</td></tr>
+        <tr><td>Warning sign, beverage overall</td><td class="num">Above 32%</td></tr>
+      </tbody>
+    </table>
+    <p>The per-cup figure is lower than the beverage total because the total also carries cold drinks, juices, wastage and staff coffees. If your per-cup cost looks fine but your beverage cost percentage on the P&amp;L is high, the gap is usually milk waste, unrecorded staff and comp drinks, or remakes. Our guide to <a href="/blog/coffee-cost-percentage">coffee cost percentage</a> goes through each one.</p>
+
+    <h2>Where coffee margin quietly disappears</h2>
+    <h3>Milk waste</h3>
+    <p>Milk is usually the biggest cost after beans, and it's the one that leaks. A barista who steams a full jug for every drink and tips the rest can waste 50ml a coffee. Standard jug sizes for each drink and a quick weekly check of litres bought against coffees sold usually halve the waste within a month.</p>
+    <h3>Takeaway cups</h3>
+    <p>At $0.20–$0.30 a set, cups and lids look trivial. On 200 coffees a day with half going out the door, they cost $6,000–$9,000 a year. Some cafés now add a small cup charge or a discount for reusable cups; either way, count them.</p>
+    <h3>Alternative milks without a surcharge</h3>
+    <p>Oat milk costs roughly twice what dairy does. If a fifth of your customers choose it and you don't charge for it, every one of those coffees earns less. The calculator shows how much of the extra cost your current surcharge covers.</p>
+    <h3>Bean prices that moved while your price didn't</h3>
+    <p>Every $5 a kilo adds about $0.10 to a 20g coffee. Specialty beans have risen sharply in the last two years, and many cafés haven't moved their coffee price since. The bean price table in the calculator shows exactly what each step costs you.</p>
+
+    <h2>Pricing your coffee</h2>
+    <p>Divide your cost per cup by your target cost percentage to get the minimum price. At $1.20 a cup and a 20% target, that's $6.00. If the market won't take that, the levers are the dose, the milk waste and the cup cost, in that order. Small, regular rises of $0.20–$0.50 rarely lose customers. Each $0.10 on 200 coffees a day is worth about $6,000 a year.</p>
+    <p>For food and cabinet items, the <a href="/menu-price-calculator">café menu price calculator</a> works the same way. Our guide to <a href="/blog/cafe-menu-pricing">pricing a café menu</a> covers the strategy around it.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How much does a cup of coffee cost to make?</h3>
+    <p>Most cafés spend $1.00–$1.50 to make a milk coffee once beans, milk, milk waste, a share of takeaway cups and lids, and alternative milks are counted. A long black is closer to $0.70–$0.90. The beans are usually only half to two-thirds of the cost.</p>
+    <h3>What should my coffee cost percentage be?</h3>
+    <p>A single milk coffee usually lands at 15–25% of its selling price. Across all coffee and beverage sales, 22–30% is the usual target. Above about 32% points to milk waste, underpriced drinks, or a bean price rise that hasn't been passed on.</p>
+    <h3>How many coffees do you get from a kilo of beans?</h3>
+    <p>At an 18–20g double-shot dose, a kilo gives about 50–55 coffees. Purging the grinder, dialling in each morning and remakes usually take that down to 45–50 in practice.</p>
+    <h3>Should I charge extra for oat milk?</h3>
+    <p>Yes, in most cafés. Oat and other plant milks cost two to three times as much as dairy per litre. A surcharge of $0.50–$1.00 usually covers the extra cost; without one, every alternative-milk coffee earns less than the dairy version.</p>
+    <h3>How much does a bean price rise add to each coffee?</h3>
+    <p>Every $5 per kilo adds about $0.10 to a coffee at a 20g dose. On 200 coffees a day over six days a week, that's around $6,000 a year.</p>
+
+    <div class="related">
+      <p>Related</p>
+      <ul>
+        <li><a href="/">Café profit calculator: your real margin from a week of figures</a></li>
+        <li><a href="/menu-price-calculator">Café menu price calculator</a></li>
+        <li><a href="/break-even-calculator">Café break-even calculator</a></li>
+        <li><a href="/blog/coffee-cost-percentage">Coffee cost percentage: what should it be?</a></li>
+      </ul>
+    </div>
+
+    <p class="byline">Written by <a href="/about">Terry McDonnell</a>, chartered accountant, former owner of seven fast-food franchises and a restaurant. Results are indicative only.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <p>CaféProfitCalc — free profitability tools for café and coffee shop operators.<br>
+  Results are indicative only. Always consult a qualified accountant for formal financial advice.<br>
+  <a href="/">Profit calculator</a> · <a href="/coffee-cost-calculator">Coffee cost calculator</a> · <a href="/menu-price-calculator">Menu price calculator</a> · <a href="/break-even-calculator">Break-even calculator</a> · <a href="/menu-engineering-calculator">Menu engineering calculator</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy policy</a></p>
+</footer>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(id){ var v = parseFloat($(id).value); return isFinite(v) ? v : 0; };
+  var money = function(v){ return (v < 0 ? '−$' : '$') + Math.abs(isFinite(v) ? v : 0).toFixed(2); };
+  var m0 = function(v){ return (v < 0 ? '−$' : '$') + Math.round(Math.abs(v)).toLocaleString('en-US'); };
+  var PRESETS = {
+    fw:    {milk:170, extras:0,    price:5.50, dose:20},
+    latte: {milk:220, extras:0,    price:5.80, dose:20},
+    capp:  {milk:150, extras:0.03, price:5.50, dose:20},
+    lb:    {milk:0,   extras:0,    price:5.00, dose:20},
+    mocha: {milk:200, extras:0.35, price:6.50, dose:20}
+  };
+  var COLORS = {beans:'#5b3a29', milk:'#c9b48a', waste:'#b91c1c', alt:'#7a9a5a', cups:'#2a6b4c', extras:'#92520a'};
+
+  function load(k){
+    var p = PRESETS[k];
+    $('milkMl').value = p.milk; $('extras').value = p.extras.toFixed(2); $('price').value = p.price.toFixed(2); $('dose').value = p.dose;
+    document.querySelectorAll('#presets button').forEach(function(b){ b.classList.toggle('on', b.dataset.p === k); });
+    calc();
+  }
+
+  function parts(beanKg){
+    var milkMl = num('milkMl'), w = num('milkWaste') / 100, alt = num('altShare') / 100;
+    var beans = beanKg / 1000 * num('dose');
+    var dairyCost = milkMl / 1000 * num('milkL');
+    var altExtra = milkMl / 1000 * Math.max(num('altL') - num('milkL'), 0) * alt;
+    var milk = dairyCost;
+    var waste = (dairyCost + altExtra) * w;
+    var cups = num('toShare') / 100 * num('cupCost');
+    var extras = num('extras');
+    return {beans:beans, milk:milk, waste:waste, alt:altExtra, cups:cups, extras:extras, total: beans + milk + waste + altExtra + cups + extras};
+  }
+
+  function calc(){
+    var tax = num('tax') / 100;
+    var p = parts(num('beanKg'));
+    var price = num('price');
+    var alt = num('altShare') / 100;
+    var rev = (price + (num('milkMl') > 0 ? alt * num('altCharge') : 0)) / (1 + tax);
+    var perDay = num('cups'), days = Math.max(1, Math.round(num('days')));
+    var perYear = perDay * days * 52;
+
+    $('cost').textContent = money(p.total);
+    $('costSub').textContent = 'Average across dine-in, takeaway and alt milk';
+    if (rev <= 0) { $('pct').textContent = '—'; return; }
+    var pct = p.total / rev * 100, profit = rev - p.total, t = num('target');
+    $('pct').textContent = pct.toFixed(1) + '%';
+    $('profit').textContent = money(profit);
+    $('yearProfit').textContent = m0(profit * perYear);
+
+    var v = $('verdict');
+    if (pct <= t + 0.5) { v.className = 'verdict good'; v.textContent = pct.toFixed(1) + '% is within your ' + t + '% target.'; }
+    else if (pct <= t + 5) { v.className = 'verdict warn'; v.textContent = (pct - t).toFixed(1) + ' points over your ' + t + '% target. Check milk waste and when you last moved the price.'; }
+    else { v.className = 'verdict bad'; v.textContent = pct.toFixed(1) + '% is well over your ' + t + '% target. This coffee is underpriced for what it costs to make.'; }
+
+    var keys = [['beans','Beans'],['milk','Dairy milk'],['alt','Extra for alt milk'],['waste','Milk waste'],['cups','Takeaway cup and lid'],['extras','Chocolate, syrup, sugar']];
+    var bar = '', leg = '';
+    keys.forEach(function(k){
+      var val = p[k[0]]; if (val <= 0.0005) return;
+      bar += '<span style="width:' + (val / p.total * 100) + '%;background:' + COLORS[k[0]] + '" title="' + k[1] + '"></span>';
+      leg += '<span><i class="sw" style="background:' + COLORS[k[0]] + '"></i>' + k[1] + '</span><span class="num">' + money(val) + '</span><span class="num" style="color:var(--hint)">' + Math.round(val / p.total * 100) + '%</span>';
+    });
+    $('bar').innerHTML = bar; $('legend').innerHTML = leg;
+
+    var tp = t > 0 ? Math.ceil((p.total / (t / 100) - (num('milkMl') > 0 ? alt * num('altCharge') / (1 + tax) : 0)) * (1 + tax) * 10 - 1e-9) / 10 : 0;
+    $('targetPrice').textContent = money(tp);
+    var d = tp - price;
+    $('targetNote').textContent = Math.abs(d) < 0.005 ? 'Your current price' : d > 0 ? money(d) + ' more than now' : 'Minimum price; yours is ' + money(-d) + ' above it';
+
+    $('wasteYear').textContent = m0(p.waste * perYear);
+    var altGap = (p.alt - (num('milkMl') > 0 ? alt * num('altCharge') / (1 + tax) : 0)) * perYear;
+    $('altYear').textContent = altGap > 0 ? m0(altGap) : 'Covered';
+    $('cupYear').textContent = m0(p.cups * perYear);
+    $('tenCents').textContent = m0(0.1 / (1 + tax) * perYear);
+
+    var base = Math.round(num('beanKg') / 5) * 5, rows = '';
+    [-10, -5, 0, 5, 10, 15].forEach(function(dk){
+      var kg = base + dk; if (kg <= 0) return;
+      var q = parts(kg);
+      var hl = Math.abs(kg - num('beanKg')) < 2.5 ? ' class="hl"' : '';
+      rows += '<tr' + hl + '><td>$' + kg + '</td><td class="num">' + money(q.total) + '</td><td class="num">' + (q.total / rev * 100).toFixed(1) + '%</td></tr>';
+    });
+    $('beanLadder').innerHTML = rows;
+  }
+
+  document.querySelectorAll('#presets button').forEach(function(b){ b.onclick = function(){ load(b.dataset.p); }; });
+  ['beanKg','dose','milkMl','milkL','milkWaste','extras','altShare','altL','altCharge','toShare','cupCost','price','tax','target','cups','days'].forEach(function(id){ $(id).addEventListener('input', calc); });
+  load('fw');
+})();
+</script>
+</body>
+</html>

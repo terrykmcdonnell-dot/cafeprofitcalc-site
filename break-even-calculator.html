@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Break-Even Calculator: Sales &amp; Customers a Day</title>
+<meta name="description" content="Enter your café's fixed costs and variable cost %. See weekly break-even sales, customers per day, your margin of safety and what a loyalty discount really costs.">
+<link rel="canonical" href="https://www.cafeprofitcalc.com/break-even-calculator">
+<meta property="og:title" content="Café Break-Even Calculator: Sales &amp; Customers a Day">
+<meta property="og:description" content="Weekly break-even sales, customers a day, margin of safety and the true cost of discounts. Free, no signup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5659107512429407" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Café Break-Even Calculator",
+  "url": "https://www.cafeprofitcalc.com/break-even-calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Work out a cafe's weekly break-even sales and customers per day from fixed costs and variable cost percentage.",
+  "author": { "@type": "Person", "name": "Terry McDonnell", "url": "https://www.cafeprofitcalc.com/about" }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How do I calculate my café's break-even point?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Break-even sales = fixed costs ÷ (100% − variable cost %). With $3,500 of weekly fixed costs and variable costs of 65% of sales, a café needs $10,000 a week to break even."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How many customers does my café need a day to break even?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Divide weekly break-even sales by your trading days, then by your average transaction value. $10,000 a week over six days at a $14 average transaction is about 120 customers a day."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are barista wages a fixed or variable cost?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Hourly staff rostered up and down with trade are variable. A salaried manager, and your own wage, are fixed. Most cafés have both; split them rather than putting all wages in one column."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is a loyalty card worth it for a café?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Only if it brings in extra visits. A buy-nine-get-the-tenth-free card is roughly a 10% discount on those customers. At a 35% contribution margin that needs about 40% more visits from them just to stand still."
+   }
+  }
+ ]
+}
+</script>
+<style>
+:root{
+  --bg:#faf8f5;--surface:#ffffff;--surface2:#f3f0eb;--surface3:#ece8e1;
+  --border:rgba(0,0,0,0.08);--border-med:rgba(0,0,0,0.14);
+  --text:#1c1a17;--muted:#2a2825;--hint:#6b6660;
+  --rust:#2a6b4c;--rust-light:#edf5f0;--rust-dim:rgba(42,107,76,0.1);
+  --green:#1a5e38;--green-light:#eaf5ef;--amber:#92520a;--amber-light:#fef4e6;
+  --red:#b91c1c;--red-light:#fef2f2;--radius:8px;--radius-lg:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',serif;font-weight:400;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--rust);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:'Source Serif 4',serif;font-size:18px;color:var(--text);letter-spacing:-.2px}
+.logo:hover{text-decoration:none}
+.logo span{color:var(--rust)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+@media(max-width:900px){.nav-links{gap:18px}.nav-links a.hide-sm{display:none}}@media(max-width:700px){.nav-links{display:none}}
+
+.hero{background:var(--surface);border-bottom:1px solid var(--border);padding:56px 24px 48px;text-align:center}
+.hero-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);background:var(--rust-light);padding:4px 14px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-family:'Source Serif 4',serif;font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.1;letter-spacing:-.5px;margin:0 auto 14px;max-width:680px}
+.hero p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.65}
+
+.calc{padding:40px 0}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:820px){.calc-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-title{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;margin-bottom:18px}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;margin-bottom:5px}
+.hint{font-size:11px;color:var(--hint);margin-top:3px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input[type=number],input[type=text],select{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--border-med);border-radius:var(--radius);background:var(--surface);color:var(--text)}
+input:focus,select:focus{outline:2px solid var(--rust-dim);border-color:var(--rust)}
+.prefix{position:relative}
+.prefix span{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.prefix input{padding-left:24px}
+.suffix{position:relative}
+.suffix span{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.suffix input{padding-right:28px}
+
+.ing-row{display:grid;grid-template-columns:1fr 110px 32px;gap:8px;margin-bottom:8px}
+.ing-row button{border:1px solid var(--border-med);background:var(--surface);border-radius:var(--radius);cursor:pointer;color:var(--hint);font-size:16px}
+.ing-row button:hover{color:var(--red);border-color:var(--red)}
+.add-btn{font:inherit;font-size:13px;color:var(--rust);background:var(--rust-light);border:none;border-radius:var(--radius);padding:7px 12px;cursor:pointer;margin-top:4px}
+.add-btn:hover{background:var(--rust-dim)}
+.subtotal{display:flex;justify-content:space-between;font-size:14px;padding-top:12px;margin-top:12px;border-top:1px solid var(--border)}
+.subtotal strong{font-weight:600}
+
+.result-hero{background:var(--text);border-radius:var(--radius-lg);padding:28px 24px;margin-bottom:14px;color:#fff;text-align:center}
+.result-hero .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.result-hero .big{font-family:'Source Serif 4',serif;font-size:48px;line-height:1.1;margin:6px 0 4px}
+.result-hero .sub{font-size:13px;opacity:.8}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center}
+.stat .v{font-size:20px;font-weight:600}
+.stat .l{font-size:11px;color:var(--hint)}
+.verdict{border-radius:var(--radius);padding:12px 14px;font-size:14px;margin-bottom:14px}
+.verdict.good{background:var(--green-light);color:var(--green)}
+.verdict.warn{background:var(--amber-light);color:var(--amber)}
+.verdict.bad{background:var(--red-light);color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--border)}
+th{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--hint)}
+td.num,th.num{text-align:right}
+tr.hl td{background:var(--rust-light);font-weight:600}
+
+.content{padding:16px 0 56px}
+.content .inner{max-width:720px;margin:0 auto}
+.content h2{font-family:'Source Serif 4',serif;font-weight:400;font-size:26px;line-height:1.2;margin:40px 0 12px}
+.content h3{font-size:17px;font-weight:600;margin:24px 0 8px}
+.content p{font-size:16px;margin-bottom:14px}
+.content ul{margin:0 0 14px 20px;font-size:16px}
+.content li{margin-bottom:6px}
+.formula{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--rust);border-radius:var(--radius);padding:14px 16px;font-size:16px;margin:0 0 16px}
+.content table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;overflow:hidden}
+.content td,.content th{padding:10px 12px}
+.related{background:var(--surface2);border-radius:var(--radius-lg);padding:20px 22px;margin-top:36px}
+.related p{margin-bottom:8px;font-weight:600}
+.related ul{margin-bottom:0}
+.byline{font-size:13px;color:var(--hint);margin-top:28px}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding:28px 24px;text-align:center;font-size:13px;color:var(--hint);line-height:1.8}
+</style>
+<style>
+.cost-row{display:grid;grid-template-columns:1fr 130px;gap:10px;align-items:center;margin-bottom:8px}
+.cost-row label{font-size:14px}
+.result-hero .split{display:flex;justify-content:center;gap:28px;margin-top:14px;font-size:13px;opacity:.9}
+.result-hero .split strong{display:block;font-size:20px;font-weight:600;opacity:1}
+.bar{height:10px;background:var(--surface3);border-radius:6px;overflow:hidden;margin:10px 0 6px;position:relative}
+.bar span{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">café<span>profit</span>calc</a>
+    <div class="nav-links">
+      <a href="/">Calculator</a>
+      <a href="/coffee-cost-calculator">Coffee cost</a>
+      <a href="/menu-price-calculator">Menu pricing</a>
+      <a href="#calculator">Break-even</a>
+      <a href="/menu-engineering-calculator">Menu engineering</a>
+      <a href="/blog" class="hide-sm">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-tag">Free café break-even calculator</div>
+  <h1>How many customers before you start making money?</h1>
+  <p>Split your costs into fixed and variable, and see your break-even in weekly sales and in customers through the door each day.</p>
+</header>
+
+<main>
+<section class="calc" id="calculator">
+  <div class="container">
+    <div class="calc-grid">
+
+      <!-- INPUTS -->
+      <div>
+        <div class="card">
+          <div class="card-title">1. Fixed costs per week</div>
+          <div class="section-label">Costs that arrive whether you open or not</div>
+          <div class="cost-row"><label for="fRent">Rent and outgoings</label><div class="prefix"><span>$</span><input type="number" id="fRent" value="1100" min="0" step="50"></div></div>
+          <div class="cost-row"><label for="fSalary">Salaried wages (manager)</label><div class="prefix"><span>$</span><input type="number" id="fSalary" value="900" min="0" step="50"></div></div>
+          <div class="cost-row"><label for="fOwner">Your own wage</label><div class="prefix"><span>$</span><input type="number" id="fOwner" value="900" min="0" step="50"></div></div>
+          <div class="cost-row"><label for="fUtil">Power, insurance, subscriptions</label><div class="prefix"><span>$</span><input type="number" id="fUtil" value="350" min="0" step="50"></div></div>
+          <div class="cost-row"><label for="fLoan">Loan and lease repayments</label><div class="prefix"><span>$</span><input type="number" id="fLoan" value="150" min="0" step="50"></div></div>
+          <div class="cost-row"><label for="fOther">Everything else fixed</label><div class="prefix"><span>$</span><input type="number" id="fOther" value="100" min="0" step="50"></div></div>
+          <div class="hint">Monthly figure? Multiply by 12 and divide by 52. Leave out GST/sales tax throughout.</div>
+          <div class="subtotal"><span>Fixed costs per week</span><strong id="fixedTotal">$0</strong></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">2. Variable costs, as % of sales</div>
+          <div class="section-label">Costs that rise and fall with trade</div>
+          <div class="cost-row"><label for="vFood">Coffee, food and drink cost</label><div class="suffix"><input type="number" id="vFood" value="30" min="0" max="100" step="0.5"><span>%</span></div></div>
+          <div class="cost-row"><label for="vLabour">Hourly wages (baristas, kitchen)</label><div class="suffix"><input type="number" id="vLabour" value="30" min="0" max="100" step="0.5"><span>%</span></div></div>
+          <div class="cost-row"><label for="vOther">Takeaway packaging, card fees</label><div class="suffix"><input type="number" id="vOther" value="5" min="0" max="100" step="0.5"><span>%</span></div></div>
+          <div class="subtotal"><span>Variable costs</span><strong id="varTotal">0%</strong></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">3. How you trade</div>
+          <div class="row2">
+            <div class="field">
+              <label for="spend">Average transaction value</label>
+              <div class="prefix"><span>$</span><input type="number" id="spend" value="14" min="0" step="0.5"></div>
+            </div>
+            <div class="field">
+              <label for="days">Trading days per week</label>
+              <input type="number" id="days" value="6" min="1" max="7" step="1">
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="current">Current weekly sales <span style="color:var(--hint)">(optional)</span></label>
+              <div class="prefix"><span>$</span><input type="number" id="current" value="11500" min="0" step="100"></div>
+            </div>
+            <div class="field">
+              <label for="discount">Test a discount or loyalty card</label>
+              <div class="suffix"><input type="number" id="discount" value="10" min="0" max="90" step="1"><span>%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div>
+        <div class="result-hero">
+          <div class="lbl">Break-even sales per week</div>
+          <div class="big" id="beWeek">$0</div>
+          <div class="sub" id="beSub">&nbsp;</div>
+          <div class="split">
+            <div><strong id="beDay">$0</strong>per trading day</div>
+            <div><strong id="beCovers">0</strong>customers per day</div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="v" id="cm">0%</div><div class="l">Contribution margin</div></div>
+          <div class="stat"><div class="v" id="beMonth">$0</div><div class="l">Break-even / month</div></div>
+          <div class="stat"><div class="v" id="perFixed">$0</div><div class="l">Sales per $1 of fixed cost</div></div>
+        </div>
+
+        <div class="card" id="currentCard">
+          <div class="card-title">Where you are now</div>
+          <div class="verdict" id="verdict"></div>
+          <div class="bar"><span id="barFill"></span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--hint)"><span>$0</span><span id="barLabel"></span></div>
+          <table style="margin-top:14px">
+            <tbody>
+              <tr><td>Weekly profit (loss) before tax</td><td class="num" id="profitWeek"></td></tr>
+              <tr><td>Annual profit (loss) before tax</td><td class="num" id="profitYear"></td></tr>
+              <tr><td>Margin of safety</td><td class="num" id="safety"></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">If your variable costs move</div>
+          <table>
+            <thead><tr><th>Variable costs</th><th class="num">Break-even / week</th><th class="num">Customers / day</th><th class="num">Change</th></tr></thead>
+            <tbody id="ladder"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">What the discount really costs</div>
+          <p style="font-size:14px" id="discountText"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<article class="content">
+  <div class="inner">
+
+    <h2>How café break-even works</h2>
+    <p>Your break-even point is the weekly sales figure where what's left after variable costs exactly pays the fixed costs. Every dollar below it comes out of your pocket. Every dollar above it is profit, less only the costs that move with sales.</p>
+    <div class="formula"><strong>Break-even sales = fixed costs ÷ (100% − variable cost %)</strong></div>
+    <p>For a café, the useful version of the answer isn't dollars. It's customers. Divide weekly break-even by the days you trade and by your average transaction value, and you get the number of people who need to come through the door each day before you earn anything.</p>
+
+    <h2>A worked example</h2>
+    <p>The calculator opens with a suburban café on $3,500 a week of fixed costs: $1,100 rent, $900 for a salaried manager, $900 for the owner, $350 for power, insurance and software, $150 of equipment lease, and $100 of everything else. Coffee, food and drink run 30% of sales, hourly wages 30% and packaging and card fees 5%, so variable costs are 65% and every dollar of sales leaves 35 cents.</p>
+    <p>$3,500 ÷ 0.35 = <strong>$10,000 a week</strong>. Over six days at a $14 average transaction, that's 120 customers a day. On current sales of $11,500, the café makes $525 a week before tax and has a 13% margin of safety. A wet July that knocks a seventh off trade puts it straight into loss.</p>
+
+    <h2>What counts as fixed and variable in a café</h2>
+    <ul>
+      <li><strong>Fixed:</strong> rent and outgoings, a salaried manager, your own wage, insurance, POS and software subscriptions, equipment leases and loan repayments, accountant's fees.</li>
+      <li><strong>Variable:</strong> beans, milk, food and drink stock, hourly baristas and kitchen staff rostered to trade, takeaway cups and packaging, card and delivery-app fees.</li>
+      <li><strong>The grey area:</strong> the minimum roster. If you need two people on the floor however quiet it is, those hours behave like a fixed cost. Moving them into fixed costs gives a more honest break-even.</li>
+    </ul>
+
+    <h2>Using break-even before you sign a lease</h2>
+    <p>This is where the number earns its keep. Before committing to a site, put the proposed rent and a realistic roster into the calculator and look at the customers-a-day figure. Then stand outside the site at 8am on a Tuesday and count the foot traffic. If you'd need a third of everyone walking past to buy a coffee, the rent is too high, however good the site looks. Our guide to <a href="/blog/cafe-lease-negotiation">café lease negotiation</a> covers what to push for.</p>
+
+    <h2>Loyalty cards and discounts</h2>
+    <p>A buy-nine-get-one-free card is a 10% discount on your most loyal customers. At a 35% contribution margin, those customers need to visit about 40% more often just for the card to break even. It often does work for a café near offices, where it shifts habit from the place next door. It rarely works when most customers are already regulars. The discount box in the calculator shows the exact figure for your numbers.</p>
+
+    <h2>Mistakes that make break-even look better than it is</h2>
+    <ul>
+      <li><strong>Leaving out your own wage.</strong> If you work 50 hours a week in the café and pay yourself nothing, the business isn't breaking even. You're subsidising it.</li>
+      <li><strong>Using GST-inclusive sales.</strong> Use sales excluding tax. In New Zealand, GST-inclusive takings overstate your real sales by 15%, so you look further above break-even than you are.</li>
+      <li><strong>Ignoring seasonality.</strong> Work it out for your quietest month, not your average one. That's the month that tests your cash.</li>
+      <li><strong>Forgetting the lease repayments on the coffee machine.</strong> They're easy to miss and they're fixed.</li>
+    </ul>
+    <p>For the full method, see <a href="/blog/cafe-break-even-analysis">café break-even analysis</a>. For managing the quiet months, see <a href="/blog/cafe-cash-flow">café cash flow</a>. To lift your average transaction instead of chasing more customers, see <a href="/blog/increase-average-transaction-value">how to increase average transaction value</a>.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I calculate my café's break-even point?</h3>
+    <p>Break-even sales = fixed costs ÷ (100% − variable cost %). With $3,500 of weekly fixed costs and variable costs of 65% of sales, a café needs $10,000 a week to break even.</p>
+    <h3>How many customers does my café need a day to break even?</h3>
+    <p>Divide weekly break-even sales by your trading days, then by your average transaction value. $10,000 a week over six days at a $14 average transaction is about 120 customers a day.</p>
+    <h3>Are barista wages a fixed or variable cost?</h3>
+    <p>Hourly staff rostered up and down with trade are variable. A salaried manager, and your own wage, are fixed. Most cafés have both; split them rather than putting all wages in one column.</p>
+    <h3>Is a loyalty card worth it for a café?</h3>
+    <p>Only if it brings in extra visits. A buy-nine-get-the-tenth-free card is roughly a 10% discount on those customers. At a 35% contribution margin that needs about 40% more visits from them just to stand still.</p>
+
+    <div class="related">
+      <p>Related</p>
+      <ul>
+        <li><a href="/">Café profit calculator: your real margin from a week of figures</a></li>
+        <li><a href="/coffee-cost-calculator">Coffee cost per cup calculator</a></li>
+        <li><a href="/menu-price-calculator">Café menu price calculator</a></li>
+        <li><a href="/blog/cafe-break-even-analysis">Café break-even analysis: how to calculate it</a></li>
+      </ul>
+    </div>
+
+    <p class="byline">Written by <a href="/about">Terry McDonnell</a>, chartered accountant, former owner of seven fast-food franchises and a restaurant. Results are indicative only.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <p>CaféProfitCalc — free profitability tools for café and coffee shop operators.<br>
+  Results are indicative only. Always consult a qualified accountant for formal financial advice.<br>
+  <a href="/">Profit calculator</a> · <a href="/coffee-cost-calculator">Coffee cost calculator</a> · <a href="/menu-price-calculator">Menu price calculator</a> · <a href="/break-even-calculator">Break-even calculator</a> · <a href="/menu-engineering-calculator">Menu engineering calculator</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy policy</a></p>
+</footer>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(id){ var v = parseFloat($(id).value); return isFinite(v) ? v : 0; };
+  var m0 = function(v){ var s = Math.round(Math.abs(v)).toLocaleString('en-US'); return (v < 0 ? '−$' : '$') + s; };
+  var pct = function(v){ return (Math.round(v * 10) / 10) + '%'; };
+  var fixedIds = ['fRent','fSalary','fOwner','fUtil','fLoan','fOther'];
+  var varIds = ['vFood','vLabour','vOther'];
+
+  function calc(){
+    var fixed = fixedIds.reduce(function(a, id){ return a + num(id); }, 0);
+    var varPct = varIds.reduce(function(a, id){ return a + num(id); }, 0);
+    var cm = (100 - varPct) / 100;
+    var spend = num('spend');
+    var days = Math.max(1, Math.round(num('days')));
+    $('fixedTotal').textContent = m0(fixed);
+    $('varTotal').textContent = pct(varPct);
+
+    if (cm <= 0) {
+      $('beWeek').textContent = 'Never';
+      $('beSub').textContent = 'Variable costs are 100% or more of sales, so every sale loses money.';
+      ['beDay','beCovers','beMonth','perFixed'].forEach(function(id){ $(id).textContent = '—'; });
+      $('cm').textContent = pct(100 - varPct);
+      $('currentCard').style.display = 'none';
+      $('ladder').innerHTML = ''; $('discountText').textContent = '';
+      return;
+    }
+
+    var be = fixed / cm;
+    var beDay = be / days;
+    $('beWeek').textContent = m0(be);
+    $('beSub').textContent = m0(be * 52) + ' a year, excluding tax';
+    $('beDay').textContent = m0(beDay);
+    $('beCovers').textContent = spend > 0 ? Math.ceil(beDay / spend).toLocaleString('en-US') : '—';
+    $('cm').textContent = pct(cm * 100);
+    $('beMonth').textContent = m0(be * 52 / 12);
+    $('perFixed').textContent = '$' + (1 / cm).toFixed(2);
+
+    // current position
+    var cur = num('current');
+    var card = $('currentCard');
+    if (cur > 0) {
+      card.style.display = 'block';
+      var profit = (cur - be) * cm;
+      var safety = (cur - be) / cur * 100;
+      var v = $('verdict');
+      if (cur >= be) {
+        v.className = 'verdict ' + (safety >= 20 ? 'good' : 'warn');
+        v.textContent = 'You are ' + m0(cur - be) + ' a week above break-even. ' +
+          (safety >= 20 ? 'A healthy cushion.' : 'That is a thin cushion: a ' + Math.round(safety) + '% drop in sales takes profit to zero.');
+      } else {
+        v.className = 'verdict bad';
+        v.textContent = 'You are ' + m0(be - cur) + ' a week below break-even, about ' + Math.ceil((be - cur) / days / Math.max(spend, 1)) + ' more customers a day at your average transaction.';
+      }
+      var scale = Math.max(cur, be) * 1.1;
+      var fill = $('barFill');
+      fill.style.width = (cur / scale * 100) + '%';
+      fill.style.background = cur >= be ? 'var(--green)' : 'var(--red)';
+      $('barLabel').textContent = 'Break-even ' + m0(be) + ' · You ' + m0(cur);
+      $('profitWeek').textContent = m0(profit);
+      $('profitYear').textContent = m0(profit * 52);
+      $('safety').textContent = cur >= be ? pct(safety) : 'None';
+      $('profitWeek').style.color = $('profitYear').style.color = profit < 0 ? 'var(--red)' : 'var(--text)';
+    } else {
+      card.style.display = 'none';
+    }
+
+    // sensitivity
+    var rows = '';
+    [-4, -2, 0, 2, 4].forEach(function(d){
+      var vp = varPct + d, c = (100 - vp) / 100;
+      if (vp < 0 || c <= 0) return;
+      var b = fixed / c;
+      var hl = d === 0 ? ' class="hl"' : '';
+      var ch = d === 0 ? '—' : (b > be ? '+' : '') + m0(b - be);
+      rows += '<tr' + hl + '><td>' + pct(vp) + (d === 0 ? ' (now)' : '') + '</td><td class="num">' + m0(b) + '</td><td class="num">' +
+        (spend > 0 ? Math.ceil(b / days / spend) : '—') + '</td><td class="num">' + ch + '</td></tr>';
+    });
+    $('ladder').innerHTML = rows;
+
+    // discount
+    var disc = num('discount') / 100;
+    var t = $('discountText');
+    if (disc <= 0) {
+      t.textContent = 'Enter a discount percentage to see how much extra trade it needs.';
+    } else if (disc >= cm) {
+      t.innerHTML = 'A <strong>' + Math.round(disc * 100) + '%</strong> discount is larger than your ' + pct(cm * 100) + ' contribution margin. Every discounted sale loses money before fixed costs, however many customers it brings in.';
+    } else {
+      var mult = cm / (cm - disc);
+      t.innerHTML = 'A <strong>' + Math.round(disc * 100) + '%</strong> discount cuts your contribution from ' + Math.round(cm * 100) + ' cents to ' +
+        Math.round((cm - disc) * 100) + ' cents per dollar of full-price sales. To earn the same contribution you need <strong>' + Math.round((mult - 1) * 100) +
+        '% more customers</strong> on discounted trade' + (spend > 0 ? ', or about ' + Math.round(mult * 10) / 10 + ' discounted customers for every one at full price.' : '.');
+    }
+  }
+
+  fixedIds.concat(varIds, ['spend','days','current','discount']).forEach(function(id){
+    $(id).addEventListener('input', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
