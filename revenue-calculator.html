@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Revenue Calculator: Weekly &amp; Annual Sales by Time of Day</title>
+<meta name="description" content="Enter customers and average sale for your morning rush, lunch and afternoon. See your café's weekly and annual revenue, and which change would grow it most. Free, no signup.">
+<link rel="canonical" href="https://www.cafeprofitcalc.com/revenue-calculator">
+<meta property="og:title" content="Café Revenue Calculator: Weekly &amp; Annual Sales by Time of Day">
+<meta property="og:description" content="Weekly and annual café revenue from customers and average sale through the day, plus the levers that grow it. Free, no signup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5659107512429407" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Café Revenue Calculator",
+  "url": "https://www.cafeprofitcalc.com/revenue-calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Estimate a cafe's weekly and annual revenue from customers and average sale in the morning, at lunch and in the afternoon.",
+  "author": { "@type": "Person", "name": "Terry McDonnell", "url": "https://www.cafeprofitcalc.com/about" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"How do you calculate café revenue?","acceptedAnswer":{"@type":"Answer","text":"For each part of the day, multiply customers by average sale, then add the parts together and multiply by trading days. Add catering, retail beans and other sales on top. A café serving 120 customers at $8.50 in the morning, 50 at $16 at lunch and 30 at $6 in the afternoon takes $2,000 a day; over six days that is $12,000 a week."}},
+    {"@type":"Question","name":"What is average transaction value?","acceptedAnswer":{"@type":"Answer","text":"Sales divided by the number of transactions. It counts each sale at the till, not each person, so a group paying together counts once. Your POS reports it directly."}},
+    {"@type":"Question","name":"What grows café revenue fastest?","acceptedAnswer":{"@type":"Answer","text":"If the morning rush is already at capacity, more customers at that time is not realistic, so the bigger gains usually come from a higher average sale or more trade in the quieter afternoon. The calculator shows the annual effect of each change on your own numbers."}},
+    {"@type":"Question","name":"Should café revenue include GST or sales tax?","acceptedAnswer":{"@type":"Answer","text":"No. Use sales excluding GST, VAT or sales tax. The tax is not your money, and including it makes every cost percentage look better than it is."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#faf8f5;--surface:#ffffff;--surface2:#f3f0eb;--surface3:#ece8e1;
+  --border:rgba(0,0,0,0.08);--border-med:rgba(0,0,0,0.14);
+  --text:#1c1a17;--muted:#2a2825;--hint:#6b6660;
+  --rust:#2a6b4c;--rust-light:#edf5f0;--rust-dim:rgba(42,107,76,0.1);
+  --green:#1a5e38;--green-light:#eaf5ef;--amber:#92520a;--amber-light:#fef4e6;
+  --red:#b91c1c;--red-light:#fef2f2;--radius:8px;--radius-lg:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Serif 4',serif;font-weight:400;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--rust);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:'Source Serif 4',serif;font-size:18px;color:var(--text);letter-spacing:-.2px}
+.logo:hover{text-decoration:none}
+.logo span{color:var(--rust)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+@media(max-width:900px){.nav-links{gap:18px}.nav-links a.hide-sm{display:none}}@media(max-width:700px){.nav-links{display:none}}
+
+.hero{background:var(--surface);border-bottom:1px solid var(--border);padding:56px 24px 48px;text-align:center}
+.hero-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);background:var(--rust-light);padding:4px 14px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-family:'Source Serif 4',serif;font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.1;letter-spacing:-.5px;margin:0 auto 14px;max-width:680px}
+.hero p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.65}
+
+.calc{padding:40px 0}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:820px){.calc-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-title{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;margin-bottom:18px}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;margin-bottom:5px}
+.hint{font-size:11px;color:var(--hint);margin-top:3px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input[type=number],input[type=text],select{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--border-med);border-radius:var(--radius);background:var(--surface);color:var(--text)}
+input:focus,select:focus{outline:2px solid var(--rust-dim);border-color:var(--rust)}
+.prefix{position:relative}
+.prefix span{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.prefix input{padding-left:24px}
+.suffix{position:relative}
+.suffix span{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--hint);font-size:14px;pointer-events:none}
+.suffix input{padding-right:28px}
+
+.ing-row{display:grid;grid-template-columns:1fr 110px 32px;gap:8px;margin-bottom:8px}
+.ing-row button{border:1px solid var(--border-med);background:var(--surface);border-radius:var(--radius);cursor:pointer;color:var(--hint);font-size:16px}
+.ing-row button:hover{color:var(--red);border-color:var(--red)}
+.add-btn{font:inherit;font-size:13px;color:var(--rust);background:var(--rust-light);border:none;border-radius:var(--radius);padding:7px 12px;cursor:pointer;margin-top:4px}
+.add-btn:hover{background:var(--rust-dim)}
+.subtotal{display:flex;justify-content:space-between;font-size:14px;padding-top:12px;margin-top:12px;border-top:1px solid var(--border)}
+.subtotal strong{font-weight:600}
+
+.result-hero{background:var(--text);border-radius:var(--radius-lg);padding:28px 24px;margin-bottom:14px;color:#fff;text-align:center}
+.result-hero .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.result-hero .big{font-family:'Source Serif 4',serif;font-size:48px;line-height:1.1;margin:6px 0 4px}
+.result-hero .sub{font-size:13px;opacity:.8}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center}
+.stat .v{font-size:20px;font-weight:600}
+.stat .l{font-size:11px;color:var(--hint)}
+.verdict{border-radius:var(--radius);padding:12px 14px;font-size:14px;margin-bottom:14px}
+.verdict.good{background:var(--green-light);color:var(--green)}
+.verdict.warn{background:var(--amber-light);color:var(--amber)}
+.verdict.bad{background:var(--red-light);color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--border)}
+th{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--hint)}
+td.num,th.num{text-align:right}
+tr.hl td{background:var(--rust-light);font-weight:600}
+
+.content{padding:16px 0 56px}
+.content .inner{max-width:720px;margin:0 auto}
+.content h2{font-family:'Source Serif 4',serif;font-weight:400;font-size:26px;line-height:1.2;margin:40px 0 12px}
+.content h3{font-size:17px;font-weight:600;margin:24px 0 8px}
+.content p{font-size:16px;margin-bottom:14px}
+.content ul{margin:0 0 14px 20px;font-size:16px}
+.content li{margin-bottom:6px}
+.formula{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--rust);border-radius:var(--radius);padding:14px 16px;font-size:16px;margin:0 0 16px}
+.content table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;overflow:hidden}
+.content td,.content th{padding:10px 12px}
+.related{background:var(--surface2);border-radius:var(--radius-lg);padding:20px 22px;margin-top:36px}
+.related p{margin-bottom:8px;font-weight:600}
+.related ul{margin-bottom:0}
+.byline{font-size:13px;color:var(--hint);margin-top:28px}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding:28px 24px;text-align:center;font-size:13px;color:var(--hint);line-height:1.8}
+
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:420px){.row3{grid-template-columns:1fr 1fr}}
+.service-head{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600;margin:4px 0 10px}
+.service + .service{border-top:1px solid var(--border);padding-top:16px;margin-top:16px}
+.result-hero .split{display:flex;justify-content:center;gap:28px;margin-top:14px;font-size:13px;opacity:.9}
+.result-hero .split strong{display:block;font-size:20px;font-weight:600;opacity:1}
+.next-cta{display:block;text-align:center;background:var(--rust);color:#fff;border-radius:var(--radius);padding:12px 14px;font-weight:600;font-size:14px;margin-top:14px}
+.next-cta:hover{text-decoration:none;opacity:.92}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">café<span>profit</span>calc</a>
+    <div class="nav-links">
+      <a href="/">Calculator</a>
+      <a href="#calculator">Revenue</a>
+      <a href="/coffee-cost-calculator">Coffee cost</a>
+      <a href="/menu-price-calculator">Menu pricing</a>
+      <a href="/break-even-calculator">Break-even</a>
+      <a href="/menu-engineering-calculator">Menu engineering</a>
+      <a href="/blog/" class="hide-sm">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-tag">Free café revenue calculator</div>
+  <h1>How much should your café be taking?</h1>
+  <p>Enter how many customers you serve and what they spend through the day. See your weekly and annual revenue, and which change would grow it most.</p>
+</header>
+
+<main>
+<section class="calc" id="calculator">
+  <div class="container">
+    <div class="calc-grid">
+
+      <!-- INPUTS -->
+      <div>
+        <div class="card">
+          <div class="card-title">1. When you trade</div>
+          <div class="row2">
+            <div class="field">
+              <label for="days">Days open per week</label>
+              <input type="number" id="days" value="6" min="1" max="7" step="1">
+            </div>
+            <div class="field">
+              <label for="weeks">Trading weeks per year</label>
+              <input type="number" id="weeks" value="50" min="1" max="52" step="1">
+              <div class="hint">Leave out weeks you close for holidays.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">2. A typical day</div>
+          <div class="section-label">Customers and average sale by time of day</div>
+
+          <div class="service">
+            <div class="service-head">Morning <span style="font-weight:400;color:var(--hint);font-size:12px">open to 11am</span></div>
+            <div class="row2">
+              <div class="field"><label for="mCust">Customers</label><input type="number" id="mCust" value="120" min="0" step="1"></div>
+              <div class="field"><label for="mSale">Average sale</label><div class="prefix"><span>$</span><input type="number" id="mSale" value="8.50" min="0" step="0.1"></div></div>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="service-head">Lunch <span style="font-weight:400;color:var(--hint);font-size:12px">11am to 2pm</span></div>
+            <div class="row2">
+              <div class="field"><label for="lCust">Customers</label><input type="number" id="lCust" value="50" min="0" step="1"></div>
+              <div class="field"><label for="lSale">Average sale</label><div class="prefix"><span>$</span><input type="number" id="lSale" value="16" min="0" step="0.1"></div></div>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="service-head">Afternoon <span style="font-weight:400;color:var(--hint);font-size:12px">2pm to close</span></div>
+            <div class="row2">
+              <div class="field"><label for="aCust">Customers</label><input type="number" id="aCust" value="30" min="0" step="1"></div>
+              <div class="field"><label for="aSale">Average sale</label><div class="prefix"><span>$</span><input type="number" id="aSale" value="6" min="0" step="0.1"></div></div>
+            </div>
+          </div>
+          <div class="hint" style="margin-top:12px">Count transactions at the till, not people: a group paying together is one. Average sale excludes GST/sales tax and tips.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">3. Other sales</div>
+          <div class="row2">
+            <div class="field">
+              <label for="other">Catering, retail beans, other</label>
+              <div class="prefix"><span>$</span><input type="number" id="other" value="500" min="0" step="50"></div>
+              <div class="hint">Weekly, excluding tax.</div>
+            </div>
+            <div class="field">
+              <label for="target">Weekly target <span style="color:var(--hint)">(optional)</span></label>
+              <div class="prefix"><span>$</span><input type="number" id="target" value="14000" min="0" step="500"></div>
+              <div class="hint">For example, your break-even plus the profit you want.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div>
+        <div class="result-hero">
+          <div class="lbl">Revenue per week</div>
+          <div class="big" id="week">$0</div>
+          <div class="sub" id="weekSub">&nbsp;</div>
+          <div class="split">
+            <div><strong id="year">$0</strong>per year</div>
+            <div><strong id="month">$0</strong>per month</div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="v" id="custDay">0</div><div class="l">Customers per day</div></div>
+          <div class="stat"><div class="v" id="avgSale">$0</div><div class="l">Average sale, all day</div></div>
+          <div class="stat"><div class="v" id="custWeek">0</div><div class="l">Customers per week</div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Where the money comes from</div>
+          <table>
+            <thead><tr><th>Time of day</th><th class="num">Customers / wk</th><th class="num">Sales / wk</th><th class="num">Share</th></tr></thead>
+            <tbody id="mix"></tbody>
+          </table>
+        </div>
+
+        <div class="card" id="targetCard">
+          <div class="card-title">Against your target</div>
+          <div class="verdict" id="verdict"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">What would grow it most</div>
+          <table>
+            <thead><tr><th>If you…</th><th class="num">Extra per year</th></tr></thead>
+            <tbody id="levers"></tbody>
+          </table>
+          <a class="next-cta" href="/">Now check how much of it you keep →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<article class="content">
+  <div class="inner">
+
+    <h2>How to calculate café revenue</h2>
+    <p>A café's revenue comes down to two numbers for each part of the day: how many customers you serve, and what each one spends. Seats matter less than in a restaurant, because most café trade is takeaway or quick sit-down, and the real limit is how fast you can serve the morning queue.</p>
+    <div class="formula"><strong>Weekly revenue = (customers × average sale, for each part of the day) × days open</strong>, plus catering and other sales</div>
+    <p>Work each part of the day out separately. A morning coffee-and-go customer and a lunch customer having a toastie and a drink spend very different amounts, and one blended average hides where the money actually comes from.</p>
+
+    <h2>A worked example</h2>
+    <p>The calculator above opens with this example: a suburban café open six days a week, with a strong morning trade, a steady lunch and a quiet afternoon.</p>
+    <table>
+      <thead><tr><th>Time of day</th><th>Working</th><th class="num">Per day</th></tr></thead>
+      <tbody>
+        <tr><td>Morning</td><td>120 customers × $8.50</td><td class="num">$1,020</td></tr>
+        <tr><td>Lunch</td><td>50 customers × $16</td><td class="num">$800</td></tr>
+        <tr><td>Afternoon</td><td>30 customers × $6</td><td class="num">$180</td></tr>
+        <tr class="hl"><td>Daily total</td><td>200 customers, $10 average sale</td><td class="num">$2,000</td></tr>
+      </tbody>
+    </table>
+    <p>Six days gives $12,000 a week, plus $500 of catering and retail beans makes <strong>$12,500 a week</strong>. Over 50 trading weeks that's $625,000 a year. Notice that the afternoon, open for perhaps three hours, brings in less than a tenth of the day's sales while still needing staff, power and a full cabinet.</p>
+
+    <h2>Three ways to grow café revenue</h2>
+    <h3>1. Lift the average sale</h3>
+    <p>Every customer who adds a pastry, upsizes or buys a second coffee for a colleague lifts revenue without making the queue any longer. Adding 50 cents to the average sale in the example is worth $30,000 a year. Our guide on <a href="/blog/increase-average-transaction-value">how to increase café revenue without more customers</a> covers the practical ways to do it.</p>
+    <h3>2. Fill the quiet hours, not the busy ones</h3>
+    <p>Most cafés can't serve many more people at 8am: a barista can only make so many coffees an hour, and a long queue sends people elsewhere. The afternoon is where there's spare capacity. An afternoon offer, a meeting-friendly space or a school-pickup trade can add customers at a time you're already paying staff to be there.</p>
+    <h3>3. Trade more days, carefully</h3>
+    <p>Opening a seventh day adds a full day's sales, but also a full day's wages, often at weekend or holiday rates. It only pays if that day's sales cover its own costs. The <a href="/break-even-calculator">break-even calculator</a> helps you test that before you roster for it.</p>
+    <p>To see these levers clearly you need sales and transactions broken down by hour of the day. Most modern POS systems report this automatically; a system like <a href="https://www.touchbistro.com/point-of-sale-us/?book-a-demo-show=true&ls=16.%20Partner&ss=K%20-%20Referral&utm_campaign=cafe-profit-calc&utm_source=referral&utm_medium=cafeprofitcalc.com&utm_content=tm-calcs" rel="sponsored" target="_blank">TouchBistro</a> shows transactions and average sale by hour without you building a spreadsheet. <em>(Affiliate link: we may earn a commission if you book a demo through it, at no extra cost to you.)</em></p>
+
+    <h2>Forecasting revenue for a new café</h2>
+    <p>The calculator works for a café that hasn't opened yet, but be honest with the inputs. New owners nearly always overestimate customer numbers, especially in the first six months while locals are still finding them.</p>
+    <ul>
+      <li>Count the foot traffic past your site at 7–9am on a weekday before you sign the lease, and assume only a small share of it will stop.</li>
+      <li>Run the numbers at the customers you expect, then again at 20% fewer. If the lower figure doesn't cover your costs, the plan is fragile.</li>
+      <li>Base the average sale on cafés like yours nearby, not on your menu prices. Plenty of morning customers buy one coffee and nothing else.</li>
+    </ul>
+    <p><a href="/blog/why-cafes-fail">Why cafés fail</a> walks through what happens when sales come in 21% below plan. For a full forecast with costs, cash flow and financing, FinModelsLab's <a href="https://finmodelslab.com/products/coffee-shop-financial-model?ref=dxoajnde" rel="sponsored" target="_blank">coffee shop financial model</a> is a ready-made spreadsheet template. <em>(Affiliate link: we may earn a small commission if you buy through it, at no extra cost to you.)</em> Our guide to <a href="/blog/cafe-startup-costs">café startup costs</a> covers the spending side.</p>
+
+    <h2>Revenue isn't profit</h2>
+    <p>A café can take $625,000 a year and still struggle to pay its owner. Revenue tells you the size of the business; coffee and food cost, wages and rent decide how much of it you keep. Once you know your revenue, the <a href="/">café profit calculator</a> shows your real margin, and <a href="/blog/what-is-a-good-cafe-profit-margin">what a good café profit margin looks like</a> puts it in context.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do you calculate café revenue?</h3>
+    <p>For each part of the day, multiply customers by average sale, add them together, and multiply by the days you open. Add catering, retail and other sales on top.</p>
+    <h3>What is average transaction value?</h3>
+    <p>Sales divided by transactions. It counts each sale at the till, so a group paying together counts once. Your POS reports it directly.</p>
+    <h3>What grows café revenue fastest?</h3>
+    <p>If your morning rush is already at capacity, a higher average sale or more afternoon trade. If you have spare capacity all day, more customers. The table in the calculator shows the annual effect of each on your own numbers.</p>
+    <h3>Should café revenue include GST or sales tax?</h3>
+    <p>No. Use sales excluding GST, VAT or sales tax. The tax isn't your money, and including it makes every cost percentage look better than it is.</p>
+    <h3>How do I find my numbers by time of day?</h3>
+    <p>Run your POS sales report by hour for two or three typical weeks, then add up the hours into morning, lunch and afternoon. A single week, or one sunny Saturday, will give you a misleading picture.</p>
+
+    <div class="related">
+      <p>Related</p>
+      <ul>
+        <li><a href="/">Café profit calculator: your real margin from a week of figures</a></li>
+        <li><a href="/break-even-calculator">Break-even calculator: the sales and customers you need</a></li>
+        <li><a href="/coffee-cost-calculator">Coffee cost calculator</a></li>
+        <li><a href="/blog/cafe-kpis">Café KPIs: the numbers every operator should track weekly</a></li>
+      </ul>
+    </div>
+
+    <p class="byline">Written by <a href="/about">Terry McDonnell</a>, chartered accountant and former restaurant and franchise owner. Results are indicative only.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <p>CaféProfitCalc — free profitability tools for café and coffee shop operators.<br>
+  Results are indicative only. Always consult a qualified accountant for formal financial advice.<br>
+  <a href="/">Profit calculator</a> · <a href="/revenue-calculator">Revenue calculator</a> · <a href="/coffee-cost-calculator">Coffee cost calculator</a> · <a href="/menu-price-calculator">Menu price calculator</a> · <a href="/break-even-calculator">Break-even calculator</a> · <a href="/menu-engineering-calculator">Menu engineering calculator</a> · <a href="/blog/">Blog</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy policy</a></p>
+</footer>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(id){ var v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; };
+  var m0 = function(v){ var s = Math.round(Math.abs(v)).toLocaleString('en-US'); return (v < 0 ? '−$' : '$') + s; };
+  var short = function(v){
+    if (Math.abs(v) >= 1e6) return '$' + (Math.round(v / 1e5) / 10) + 'M';
+    if (Math.abs(v) >= 1e4) return '$' + Math.round(v / 1e3) + 'k';
+    return m0(v);
+  };
+  var ids = ['days','weeks','mCust','mSale','lCust','lSale','aCust','aSale','other','target'];
+  var parts = [['Morning','m'],['Lunch','l'],['Afternoon','a']];
+
+  function calc(){
+    var days = Math.min(7, Math.round(num('days')));
+    var weeks = Math.min(52, num('weeks'));
+    var other = num('other');
+
+    var p = parts.map(function(x){
+      var c = num(x[1] + 'Cust'), s = num(x[1] + 'Sale');
+      return { name: x[0], cust: c, sale: s, day: c * s };
+    });
+    var custDay = p.reduce(function(a, x){ return a + x.cust; }, 0);
+    var salesDay = p.reduce(function(a, x){ return a + x.day; }, 0);
+    var custWeek = custDay * days;
+    var week = salesDay * days + other, year = week * weeks;
+
+    $('week').textContent = m0(week);
+    $('weekSub').textContent = days > 0 ? m0(salesDay) + ' a day from the counter, excluding tax' : 'Excluding tax';
+    $('year').textContent = short(year);
+    $('month').textContent = short(year / 12);
+    $('custDay').textContent = Math.round(custDay).toLocaleString('en-US');
+    $('avgSale').textContent = custDay > 0 ? '$' + (salesDay / custDay).toFixed(2) : '—';
+    $('custWeek').textContent = Math.round(custWeek).toLocaleString('en-US');
+
+    // mix
+    var share = function(v){ return week > 0 ? Math.round(v / week * 100) + '%' : '—'; };
+    var rows = '';
+    p.forEach(function(x){
+      if (x.cust > 0) rows += '<tr><td>' + x.name + '</td><td class="num">' + Math.round(x.cust * days).toLocaleString('en-US') + '</td><td class="num">' + m0(x.day * days) + '</td><td class="num">' + share(x.day * days) + '</td></tr>';
+    });
+    if (other > 0) rows += '<tr><td>Catering &amp; other</td><td class="num">—</td><td class="num">' + m0(other) + '</td><td class="num">' + share(other) + '</td></tr>';
+    rows += '<tr class="hl"><td>Total</td><td class="num">' + Math.round(custWeek).toLocaleString('en-US') + '</td><td class="num">' + m0(week) + '</td><td class="num">' + (week > 0 ? '100%' : '—') + '</td></tr>';
+    $('mix').innerHTML = rows;
+
+    // target
+    var target = num('target'), card = $('targetCard'), v = $('verdict');
+    if (target > 0) {
+      card.style.display = 'block';
+      var gap = target - week;
+      var avg = custDay > 0 ? salesDay / custDay : 0;
+      if (gap <= 0) {
+        v.className = 'verdict good';
+        v.textContent = 'You are ' + m0(-gap) + ' a week above your target of ' + m0(target) + '.';
+      } else {
+        v.className = 'verdict ' + (gap / target <= 0.1 ? 'warn' : 'bad');
+        v.textContent = 'You are ' + m0(gap) + ' a week short of ' + m0(target) + '. ' +
+          (avg > 0 && days > 0 ? 'Closing it needs about ' + Math.ceil(gap / avg / days) + ' more customers a day at your current average sale, or $' + (gap / custWeek).toFixed(2) + ' more per sale on the customers you already have.' : '');
+      }
+    } else {
+      card.style.display = 'none';
+    }
+
+    // levers
+    var lv = [];
+    if (custWeek > 0) lv.push(['Add 50c to every sale', custWeek * 0.5 * weeks]);
+    if (salesDay > 0) lv.push(['Serve 10% more customers', salesDay * days * 0.1 * weeks]);
+    if (p[0].cust > 0) lv.push(['Serve 20 more in the morning', 20 * p[0].sale * days * weeks]);
+    var aSale = p[2].sale > 0 ? p[2].sale : (custDay > 0 ? salesDay / custDay : 0);
+    if (aSale > 0 && salesDay > 0) lv.push(['Serve 20 more in the afternoon', 20 * aSale * days * weeks]);
+    if (days > 0 && days < 7 && salesDay > 0) lv.push(['Open one more day', salesDay * weeks]);
+    lv = lv.filter(function(r){ return r[1] > 0; }).sort(function(a, b){ return b[1] - a[1]; });
+    $('levers').innerHTML = lv.map(function(r, i){
+      return '<tr' + (i === 0 ? ' class="hl"' : '') + '><td>' + r[0] + '</td><td class="num">+' + m0(r[1]) + '</td></tr>';
+    }).join('') || '<tr><td colspan="2">Enter your customers and average sale to compare levers.</td></tr>';
+  }
+
+  ids.forEach(function(id){ $(id).addEventListener('input', calc); });
+  calc();
+})();
+</script>
+</body>
+</html>
